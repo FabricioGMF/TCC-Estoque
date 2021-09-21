@@ -1,6 +1,6 @@
-﻿using Loja.Modelos;
+﻿using Estoque.Modelos;
 using System;
-using Loja.DAL;
+using Estoque.DAL;
 using System.Data;
 
 namespace BLL

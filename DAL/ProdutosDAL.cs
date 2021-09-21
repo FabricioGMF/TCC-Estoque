@@ -3,7 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Loja
+namespace Estoque
 {
     public class ProdutosDAL
     {

@@ -1,4 +1,4 @@
-﻿using Loja;
+﻿using Estoque;
 using System;
 using System.Collections;
 using System.Data;

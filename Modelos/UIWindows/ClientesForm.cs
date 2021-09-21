@@ -1,5 +1,5 @@
 ﻿using BLL;
-using Loja.Modelos;
+using Estoque.Modelos;
 using System;
 using System.Windows.Forms;
 

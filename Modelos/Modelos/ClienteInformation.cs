@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Loja.Modelos
+namespace Estoque.Modelos
 {
     public class ClienteInformation
     {

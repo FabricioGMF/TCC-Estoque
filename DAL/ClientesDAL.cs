@@ -1,9 +1,9 @@
 ﻿using System;
-using Loja.Modelos;
+using Estoque.Modelos;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Loja.DAL
+namespace Estoque.DAL
 {
     public class ClientesDAL
     {

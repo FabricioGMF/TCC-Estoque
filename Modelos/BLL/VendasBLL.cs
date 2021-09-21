@@ -1,4 +1,4 @@
-﻿using Loja;
+﻿using Estoque;
 using System.Data;
 
 namespace BLL
