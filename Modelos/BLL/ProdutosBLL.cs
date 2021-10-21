@@ -30,6 +30,46 @@ namespace BLL
                 throw new Exception("O estoque do produto não pode ser negativo");
             }
 
+            if (produto.EstoqueMinimo < 0)
+            {
+                throw new Exception("O estoque mínimo do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueMaximo < 0)
+            {
+                throw new Exception("O estoque máximo do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueSeguranca < 0)
+            {
+                throw new Exception("O estoque de segurança do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueMinimo >= produto.EstoqueMaximo)
+            {
+                throw new Exception("O estoque mínimo não pode ser maior ou igual ao estoque máximo");
+            }
+
+            if (produto.EstoqueMaximo <= produto.EstoqueMinimo)
+            {
+                throw new Exception("O estoque máximo não pode ser menor ou igual ao estoque mínimo");
+            }
+
+            if (produto.EstoqueMinimo == 0 || produto.EstoqueMaximo == 0)
+            {
+                throw new Exception("O estoque mínimo e/ou estoque máximo não podem ser iguais a 0");
+            }
+
+            if (produto.EstoqueTotal > produto.EstoqueMaximo)
+            {
+                throw new Exception("O estoque total não pode estar acima do estoque máximo");
+            }
+
+            if (produto.EstoqueTotal < produto.EstoqueMinimo)
+            {
+                throw new Exception("O estoque total não pode estar abaixo do estoque mínimo");
+            }
+
             ProdutosDAL obj = new ProdutosDAL();
             obj.Incluir(produto);
         }
@@ -49,6 +89,46 @@ namespace BLL
             if (produto.Estoque < 0)
             {
                 throw new Exception("O estoque do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueMinimo < 0)
+            {
+                throw new Exception("O estoque mínimo do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueMaximo < 0)
+            {
+                throw new Exception("O estoque máximo do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueSeguranca < 0)
+            {
+                throw new Exception("O estoque de segurança do produto não pode ser negativo");
+            }
+
+            if (produto.EstoqueMinimo >= produto.EstoqueMaximo)
+            {
+                throw new Exception("O estoque mínimo não pode ser maior ou igual ao estoque máximo");
+            }
+
+            if (produto.EstoqueMaximo <= produto.EstoqueMinimo)
+            {
+                throw new Exception("O estoque máximo não pode ser menor ou igual ao estoque mínimo");
+            }
+
+            if (produto.EstoqueMinimo == 0 || produto.EstoqueMaximo == 0)
+            {
+                throw new Exception("O estoque mínimo e/ou estoque máximo não podem ser iguais a 0");
+            }
+
+            if (produto.EstoqueTotal > produto.EstoqueMaximo)
+            {
+                throw new Exception("O estoque total não pode estar acima do estoque máximo");
+            }
+
+            if (produto.EstoqueTotal < produto.EstoqueMinimo)
+            {
+                throw new Exception("O estoque total não pode estar abaixo do estoque mínimo");
             }
 
             ProdutosDAL obj = new ProdutosDAL();

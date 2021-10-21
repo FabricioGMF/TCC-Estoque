@@ -32,5 +32,7 @@ namespace BLL
         {
             objDAL.Incluir(venda);
         }
+
+        //Faturado: Multiplicar preço do produto pela quantidade vendida.
     }
 }

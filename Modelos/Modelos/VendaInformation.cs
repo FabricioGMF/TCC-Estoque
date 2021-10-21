@@ -36,8 +36,8 @@ namespace Estoque
             set { _dataVenda = value; }
         }
 
-        private bool _faturado;
-        public bool Faturado
+        private decimal _faturado;
+        public decimal Faturado
         {
             get { return _faturado; }
             set { _faturado = value; }
@@ -55,6 +55,13 @@ namespace Estoque
         {
             get { return _quantidade; }
             set { _quantidade = value; }
+        }
+
+        private decimal _precoUnitario;
+        public decimal PrecoUnitario
+        {
+            get { return _precoUnitario; }
+            set { _precoUnitario = value; }
         }
     }
 }

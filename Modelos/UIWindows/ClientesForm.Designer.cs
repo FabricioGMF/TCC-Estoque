@@ -80,7 +80,7 @@
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(16, 128);
+            this.lblTelefone.Location = new System.Drawing.Point(274, 96);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(52, 13);
             this.lblTelefone.TabIndex = 3;
@@ -89,43 +89,43 @@
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(110, 29);
+            this.txtCodigo.Location = new System.Drawing.Point(73, 29);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(70, 20);
             this.txtCodigo.TabIndex = 4;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(110, 61);
+            this.txtNome.Location = new System.Drawing.Point(73, 61);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(200, 20);
+            this.txtNome.Size = new System.Drawing.Size(403, 20);
             this.txtNome.TabIndex = 5;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(110, 93);
+            this.txtEmail.Location = new System.Drawing.Point(73, 93);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(200, 20);
+            this.txtEmail.Size = new System.Drawing.Size(159, 20);
             this.txtEmail.TabIndex = 6;
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(110, 125);
+            this.txtTelefone.Location = new System.Drawing.Point(343, 93);
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(200, 20);
+            this.txtTelefone.Size = new System.Drawing.Size(133, 20);
             this.txtTelefone.TabIndex = 7;
             // 
             // txtFiltro
             // 
             this.txtFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtFiltro.Location = new System.Drawing.Point(12, 447);
+            this.txtFiltro.Location = new System.Drawing.Point(12, 442);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(160, 20);
+            this.txtFiltro.Size = new System.Drawing.Size(382, 20);
             this.txtFiltro.TabIndex = 8;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(103, 219);
+            this.btnLimpar.Location = new System.Drawing.Point(157, 163);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 9;
@@ -135,7 +135,7 @@
             // 
             // btnIncluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(184, 219);
+            this.btnIncluir.Location = new System.Drawing.Point(238, 163);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 23);
             this.btnIncluir.TabIndex = 11;
@@ -145,7 +145,7 @@
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(265, 219);
+            this.btnAlterar.Location = new System.Drawing.Point(319, 163);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 12;
@@ -155,7 +155,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(346, 219);
+            this.btnExcluir.Location = new System.Drawing.Point(400, 163);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 13;
@@ -166,7 +166,7 @@
             // btnFiltro
             // 
             this.btnFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFiltro.Location = new System.Drawing.Point(345, 445);
+            this.btnFiltro.Location = new System.Drawing.Point(401, 440);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(75, 23);
             this.btnFiltro.TabIndex = 14;
@@ -180,16 +180,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Location = new System.Drawing.Point(13, 248);
+            this.dgvClientes.Location = new System.Drawing.Point(13, 197);
             this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.Size = new System.Drawing.Size(408, 193);
+            this.dgvClientes.Size = new System.Drawing.Size(463, 236);
             this.dgvClientes.TabIndex = 15;
             this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvClientes_CellClick);
             // 
             // lblCidade
             // 
             this.lblCidade.AutoSize = true;
-            this.lblCidade.Location = new System.Drawing.Point(16, 160);
+            this.lblCidade.Location = new System.Drawing.Point(16, 128);
             this.lblCidade.Name = "lblCidade";
             this.lblCidade.Size = new System.Drawing.Size(43, 13);
             this.lblCidade.TabIndex = 16;
@@ -197,15 +197,15 @@
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(110, 157);
+            this.txtCidade.Location = new System.Drawing.Point(73, 125);
             this.txtCidade.Name = "txtCidade";
-            this.txtCidade.Size = new System.Drawing.Size(199, 20);
+            this.txtCidade.Size = new System.Drawing.Size(159, 20);
             this.txtCidade.TabIndex = 17;
             // 
             // lblUF
             // 
             this.lblUF.AutoSize = true;
-            this.lblUF.Location = new System.Drawing.Point(16, 192);
+            this.lblUF.Location = new System.Drawing.Point(274, 128);
             this.lblUF.Name = "lblUF";
             this.lblUF.Size = new System.Drawing.Size(24, 13);
             this.lblUF.TabIndex = 18;
@@ -213,7 +213,7 @@
             // 
             // txtUF
             // 
-            this.txtUF.Location = new System.Drawing.Point(110, 189);
+            this.txtUF.Location = new System.Drawing.Point(343, 125);
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(50, 20);
             this.txtUF.TabIndex = 19;
@@ -222,7 +222,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 474);
+            this.ClientSize = new System.Drawing.Size(487, 474);
             this.Controls.Add(this.txtUF);
             this.Controls.Add(this.lblUF);
             this.Controls.Add(this.txtCidade);

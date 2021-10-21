@@ -35,5 +35,33 @@ namespace Estoque
             get { return _preco; }
             set { _preco = value; }
         }
+
+        private int _estoqueMinimo;
+        public int EstoqueMinimo
+        {
+            get { return _estoqueMinimo; }
+            set { _estoqueMinimo = value; }
+        }
+
+        private int _estoqueMaximo;
+        public int EstoqueMaximo
+        {
+            get { return _estoqueMaximo; }
+            set { _estoqueMaximo = value; }
+        }
+
+        private int _estoqueSeguranca;
+        public int EstoqueSeguranca
+        {
+            get { return _estoqueSeguranca; }
+            set { _estoqueSeguranca = value; }
+        }
+
+        private int _estoqueTotal;
+        public int EstoqueTotal
+        {
+            get { return _estoqueTotal; }
+            set { _estoqueTotal = value; }
+        }
     }
 }

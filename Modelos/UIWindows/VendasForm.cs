@@ -1,6 +1,7 @@
 ﻿using BLL;
 using Estoque;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace UIWindows
@@ -15,7 +16,7 @@ namespace UIWindows
         private void VendasForm_Load(object sender, EventArgs e)
         {
             VendasBLL obj = new VendasBLL();
-            cbxProduto.DataSource = obj.ListaDeProdutos;
+            dgvProdutoVenda.DataSource = obj.ListaDeProdutos;
             cbxCliente.DataSource = obj.ListaDeClientes;
             cbxCliente.DisplayMember = "Nome";
             cbxCliente.ValueMember = "Codigo";
@@ -27,10 +28,15 @@ namespace UIWindows
             {
                 VendaInformation venda = new VendaInformation();
                 venda.Quantidade = int.Parse(txtQuantidade.Text);
+
                 venda.CodigoCliente = (int)cbxCliente.SelectedValue;
-                venda.CodigoProduto = (int)cbxProduto.SelectedValue;
+                
+                venda.CodigoProduto = (int)dgvProdutoVenda[0, dgvProdutoVenda.CurrentRow.Index].Value;
                 venda.DataVenda = DateTime.Now;
-                venda.Faturado = false;
+                venda.PrecoUnitario = Convert.ToDecimal(txtPrecoUnitario.Text);
+
+                txtFaturado.Text = (venda.PrecoUnitario * venda.Quantidade).ToString();
+                venda.Faturado = decimal.Parse(txtFaturado.Text);
 
                 VendasBLL obj = new VendasBLL();
                 obj.Incluir(venda);
@@ -40,6 +46,12 @@ namespace UIWindows
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void DgvProdutoVenda_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNomeProdVenda.Text = dgvProdutoVenda[1, dgvProdutoVenda.CurrentRow.Index].Value.ToString();
+            txtPrecoUnitario.Text = dgvProdutoVenda[2, dgvProdutoVenda.CurrentRow.Index].Value.ToString();
         }
     }
 }

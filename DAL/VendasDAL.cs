@@ -50,11 +50,11 @@ namespace Estoque
                 cn.ConnectionString = Dados.StringDeConexao;
                 SqlCommand cmd1 = new SqlCommand();
                 cmd1.Connection = cn;
-                cmd1.CommandText = "insert into Vendas (CodigoCliente, CodigoProduto, Data_Venda, Quantidade, Faturado) VALUES (@CodigoCliente, @CodigoProduto, @Data, @Quantidade, @Faturado); select @@IDENTITY";
+                cmd1.CommandText = "insert into Vendas (CodigoCliente, CodigoProduto, Data_Venda, Quantidade, Preco_Unitario, Faturado) VALUES (@CodigoCliente, @CodigoProduto, @Data, @Quantidade, @Preco_Unitario, @Faturado); select @@IDENTITY";
 
                 SqlCommand cmd2 = new SqlCommand();
                 cmd2.Connection = cn;
-                cmd2.CommandText= @"Update Produtos Set estoque = Estoque - @Quantidade where Codigo = @CodigoProduto";
+                cmd2.CommandText= @"Update Produtos Set estoque_total = Estoque_Total - @Quantidade where Codigo = @CodigoProduto";
 
                 cn.Open();
 
@@ -68,6 +68,7 @@ namespace Estoque
                 cmd1.Parameters.AddWithValue("@Data_Venda", venda.DataVenda);
                 cmd1.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
                 cmd1.Parameters.AddWithValue("@Faturado", venda.Faturado);
+                cmd1.Parameters.AddWithValue("@Preco_Unitario", venda.PrecoUnitario);
 
                 cmd2.Parameters.AddWithValue("@CodigoProduto", venda.CodigoProduto);
                 cmd2.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
