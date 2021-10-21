@@ -165,20 +165,41 @@ namespace Estoque
 
         public DataTable Listagem(string filtro)
         {
+            SqlConnection cn = new SqlConnection();
+            SqlDataAdapter da = new SqlDataAdapter();
             DataTable tabela = new DataTable();
-            string strSql;
 
-            if (filtro == "")
+            try
             {
-                strSql = "select * from produtos";
+                cn.ConnectionString = Dados.StringDeConexao;
+                //adapter
+                da.SelectCommand = new SqlCommand
+                {
+                    CommandText = "seleciona_produto",
+                    Connection = cn,
+                    CommandType = CommandType.StoredProcedure
+                };
+                //parametros da stored procedure
+                SqlParameter pfiltro;
+                pfiltro = da.SelectCommand.Parameters.Add("@filtro", SqlDbType.Text);
+                pfiltro.Value = filtro;
+
+                da.Fill(tabela);
+
+                return tabela;
             }
-            else
+            catch (SqlException ex)
             {
-                strSql = "Select * from produtos where nome like '%'" + filtro + "'%'";
+                throw new Exception("Servidor SQL Erro:" + ex.Number);
             }
-            SqlDataAdapter da = new SqlDataAdapter(strSql, Dados.StringDeConexao);
-            da.Fill(tabela);
-            return tabela;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }

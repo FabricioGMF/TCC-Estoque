@@ -129,7 +129,7 @@
             // 
             this.tsslVersaoPrograma.Name = "tsslVersaoPrograma";
             this.tsslVersaoPrograma.Size = new System.Drawing.Size(59, 17);
-            this.tsslVersaoPrograma.Text = "Versão 2.3";
+            this.tsslVersaoPrograma.Text = "Versão 2.4";
             // 
             // FormPrincipal
             // 

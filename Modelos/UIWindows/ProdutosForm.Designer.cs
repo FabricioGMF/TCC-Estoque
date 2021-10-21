@@ -67,7 +67,7 @@
             this.dgvProdutos.ReadOnly = true;
             this.dgvProdutos.Size = new System.Drawing.Size(433, 235);
             this.dgvProdutos.TabIndex = 30;
-            this.dgvProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProdutos_CellContentClick);
+            this.dgvProdutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProdutos_CellClick);
             // 
             // btnFiltro
             // 
@@ -233,6 +233,7 @@
             this.txtEstoqueTotal.Name = "txtEstoqueTotal";
             this.txtEstoqueTotal.Size = new System.Drawing.Size(75, 20);
             this.txtEstoqueTotal.TabIndex = 37;
+            this.txtEstoqueTotal.Visible = false;
             // 
             // txtEstoqueSeguranca
             // 
@@ -258,6 +259,7 @@
             this.lblEstoqueTotal.Size = new System.Drawing.Size(76, 13);
             this.lblEstoqueTotal.TabIndex = 38;
             this.lblEstoqueTotal.Text = "Estoque Total:";
+            this.lblEstoqueTotal.Visible = false;
             // 
             // ProdutosForm
             // 

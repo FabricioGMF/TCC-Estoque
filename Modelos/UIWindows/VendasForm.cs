@@ -1,7 +1,6 @@
 ﻿using BLL;
 using Estoque;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace UIWindows
@@ -48,7 +47,7 @@ namespace UIWindows
             }
         }
 
-        private void DgvProdutoVenda_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvProdutoVenda_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtNomeProdVenda.Text = dgvProdutoVenda[1, dgvProdutoVenda.CurrentRow.Index].Value.ToString();
             txtPrecoUnitario.Text = dgvProdutoVenda[2, dgvProdutoVenda.CurrentRow.Index].Value.ToString();

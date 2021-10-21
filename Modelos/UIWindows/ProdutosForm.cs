@@ -109,12 +109,12 @@ namespace UIWindows
                 MessageBox.Show("Um cliente deve ser selecionado para alteração.");
             }
             else
+            {
                 try
                 {
                     ProdutoInformation produto = new ProdutoInformation();
                     produto.Codigo = int.Parse(txtCodigo.Text);
                     produto.Nome = txtNome.Text;
-                    produto.Preco = Convert.ToDecimal(txtPreco.Text);
                     produto.Estoque = Convert.ToInt32(txtEstoque.Text);
                     produto.EstoqueMinimo = Convert.ToInt32(txtEstoqueMinimo.Text);
                     produto.EstoqueMaximo = Convert.ToInt32(txtEstoqueMaximo.Text);
@@ -132,6 +132,7 @@ namespace UIWindows
                     MessageBox.Show("Erro: " + ex.Message);
                 }
                 AtualizaGrid();
+            }
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -141,6 +142,7 @@ namespace UIWindows
                 MessageBox.Show("Um produto deve ser selecionado antes da exclusão.");
             }
             else
+            {
                 try
                 {
                     int codigo = Convert.ToInt32(txtCodigo.Text);
@@ -154,6 +156,7 @@ namespace UIWindows
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
         }
 
         private void BtnFiltro_Click(object sender, EventArgs e)
@@ -161,7 +164,7 @@ namespace UIWindows
             AtualizaGrid();
         }
 
-        private void DgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtCodigo.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
             txtNome.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();

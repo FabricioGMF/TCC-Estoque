@@ -61,6 +61,7 @@
             this.lblProduto.Size = new System.Drawing.Size(47, 13);
             this.lblProduto.TabIndex = 1;
             this.lblProduto.Text = "Produto:";
+            this.lblProduto.Visible = false;
             // 
             // lblQuantidade
             // 
@@ -121,6 +122,7 @@
             this.txtPrecoUnitario.Name = "txtPrecoUnitario";
             this.txtPrecoUnitario.Size = new System.Drawing.Size(75, 20);
             this.txtPrecoUnitario.TabIndex = 11;
+            this.txtPrecoUnitario.Visible = false;
             // 
             // lblPrecoUnitario
             // 
@@ -130,6 +132,7 @@
             this.lblPrecoUnitario.Size = new System.Drawing.Size(77, 13);
             this.lblPrecoUnitario.TabIndex = 10;
             this.lblPrecoUnitario.Text = "Preço Unitário:";
+            this.lblPrecoUnitario.Visible = false;
             // 
             // dgvProdutoVenda
             // 
@@ -141,7 +144,7 @@
             this.dgvProdutoVenda.ReadOnly = true;
             this.dgvProdutoVenda.Size = new System.Drawing.Size(426, 183);
             this.dgvProdutoVenda.TabIndex = 12;
-            this.dgvProdutoVenda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProdutoVenda_CellContentClick);
+            this.dgvProdutoVenda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProdutoVenda_CellClick);
             // 
             // txtNomeProdVenda
             // 
@@ -150,6 +153,7 @@
             this.txtNomeProdVenda.Name = "txtNomeProdVenda";
             this.txtNomeProdVenda.Size = new System.Drawing.Size(151, 20);
             this.txtNomeProdVenda.TabIndex = 13;
+            this.txtNomeProdVenda.Visible = false;
             // 
             // lblSelecionaProduto
             // 

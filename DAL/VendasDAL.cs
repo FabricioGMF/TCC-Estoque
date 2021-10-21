@@ -54,7 +54,7 @@ namespace Estoque
 
                 SqlCommand cmd2 = new SqlCommand();
                 cmd2.Connection = cn;
-                cmd2.CommandText= @"Update Produtos Set estoque_total = Estoque_Total - @Quantidade where Codigo = @CodigoProduto";
+                cmd2.CommandText= @"Update Produtos Set estoque_total = Estoque_Seguranca - Estoque - @Quantidade where Codigo = @CodigoProduto";
 
                 cn.Open();
 
