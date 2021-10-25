@@ -11,7 +11,7 @@ namespace BLL
         {
             if (cliente.Nome.Trim().Length == 0) //O nome do cliente é obrigatório
             {
-                throw new Exception("O nome do cliente é obrigatório");
+                throw new Exception("O nome/razão social do cliente é obrigatório");
             }
 
             cliente.Email = cliente.Email.ToLower(); //Email é sempre em letras minúsculas
@@ -24,7 +24,7 @@ namespace BLL
         {
             if (cliente.Nome.Trim().Length == 0)
             {
-                throw new Exception("O nome do cliente é obrigatório");
+                throw new Exception("O nome/razão social do cliente é obrigatório");
             }
 
             cliente.Email = cliente.Email.ToLower();
@@ -48,6 +48,11 @@ namespace BLL
         {
             ClientesDAL obj = new ClientesDAL();
             return obj.Listagem(filtro);
+        }
+
+        public string Valida_CPFCNPJ(/*campo CPF/CNPJ da entidade Clientes*/)
+        {
+            return ""; //Implementar
         }
     }
 }

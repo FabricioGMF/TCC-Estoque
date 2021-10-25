@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estoque.Modelos
 {
@@ -22,18 +18,25 @@ namespace Estoque.Modelos
             set {_nome = value;}
         }
 
-        private string _email;
-        public string Email
+        private string _cpfcnpj;
+        public string CPFCNPJ
         {
-            get {return _email;}
-            set {_email = value;}
+            get { return _cpfcnpj; }
+            set { _cpfcnpj = value; }
         }
 
-        private string _telefone;
-        public string Telefone
+        private string _logradouro;
+        public string Logradouro
         {
-            get { return _telefone; }
-            set { _telefone = value; }
+            get { return _logradouro; }
+            set { _logradouro = value; }
+        }
+
+        private string _bairro;
+        public string Bairro
+        {
+            get { return _bairro; }
+            set { _bairro = value; }
         }
 
         private string _cidade;
@@ -48,6 +51,41 @@ namespace Estoque.Modelos
         {
             get { return _uf; }
             set { _uf = value; }
+        }
+
+        private string _cep;
+        public string CEP
+        {
+            get { return _cep; }
+            set { _cep = value; }
+        }
+
+        private string _email;
+        public string Email
+        {
+            get {return _email;}
+            set {_email = value;}
+        }
+
+        private string _telefone;
+        public string Telefone
+        {
+            get { return _telefone; }
+            set { _telefone = value; }
+        }
+
+        private string _telefone2;
+        public string Telefone2
+        {
+            get { return _telefone2; }
+            set { _telefone2 = value; }
+        }
+
+        private DateTime _datacadastro;
+        public DateTime DataCadastro
+        {
+            get { return _datacadastro; }
+            set { _datacadastro = value; }
         }
     }
 }

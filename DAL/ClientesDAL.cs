@@ -28,31 +28,72 @@ namespace Estoque.DAL
                     Direction = ParameterDirection.Output
                 };
                 cmd.Parameters.Add(pcodigo);
-                SqlParameter pnome = new SqlParameter("@nome", SqlDbType.NVarChar, 100)
+
+                SqlParameter pnome = new SqlParameter("@nome", SqlDbType.VarChar, 100)
                 {
                     Value = cliente.Nome
                 };
                 cmd.Parameters.Add(pnome);
-                SqlParameter pemail = new SqlParameter("@email", SqlDbType.NVarChar, 100)
+
+                SqlParameter pcpfcnpj = new SqlParameter("@cpfcnpj", SqlDbType.VarChar, 20)
                 {
-                    Value = cliente.Email
+                    Value = cliente.CPFCNPJ
                 };
-                cmd.Parameters.Add(pemail);
-                SqlParameter ptelefone = new SqlParameter("@telefone", SqlDbType.NVarChar, 80)
+                cmd.Parameters.Add(pcpfcnpj);
+
+                SqlParameter plogradouro = new SqlParameter("@logradouro", SqlDbType.VarChar, 80)
                 {
-                    Value = cliente.Telefone
+                    Value = cliente.Logradouro
                 };
-                cmd.Parameters.Add(ptelefone);
-                SqlParameter pcidade = new SqlParameter("@cidade", SqlDbType.NVarChar, 20)
+                cmd.Parameters.Add(plogradouro);
+
+                SqlParameter pbairro = new SqlParameter("@bairro", SqlDbType.VarChar, 50)
+                {
+                    Value = cliente.Bairro
+                };
+                cmd.Parameters.Add(pbairro);
+
+                SqlParameter pcidade = new SqlParameter("@cidade", SqlDbType.VarChar, 50)
                 {
                     Value = cliente.Cidade
                 };
                 cmd.Parameters.Add(pcidade);
-                SqlParameter puf = new SqlParameter("@UF", SqlDbType.NVarChar, 2)
+
+                SqlParameter puf = new SqlParameter("@UF", SqlDbType.VarChar, 2)
                 {
                     Value = cliente.UF
                 };
                 cmd.Parameters.Add(puf);
+
+                SqlParameter pcep = new SqlParameter("@CEP", SqlDbType.VarChar, 8)
+                {
+                    Value = cliente.CEP
+                };
+                cmd.Parameters.Add(pcep);
+
+                SqlParameter pemail = new SqlParameter("@email", SqlDbType.VarChar, 100)
+                {
+                    Value = cliente.Email
+                };
+                cmd.Parameters.Add(pemail);
+
+                SqlParameter ptelefone = new SqlParameter("@telefone", SqlDbType.VarChar, 11)
+                {
+                    Value = cliente.Telefone
+                };
+                cmd.Parameters.Add(ptelefone);
+
+                SqlParameter ptelefone2 = new SqlParameter("@telefone2", SqlDbType.VarChar, 11)
+                {
+                    Value = cliente.Telefone2
+                };
+                cmd.Parameters.Add(ptelefone2);
+
+                SqlParameter pdatacadastro = new SqlParameter("@datacadastro", SqlDbType.DateTime)
+                {
+                    Value = cliente.DataCadastro
+                };
+                cmd.Parameters.Add(pdatacadastro);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
@@ -89,37 +130,79 @@ namespace Estoque.DAL
                 };
                 //parametros da stored procedure
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int)
                 {
                     //pcodigo.Direction = ParameterDirection.Output;
                     Value = cliente.Codigo
                 };
                 cmd.Parameters.Add(pcodigo);
-                SqlParameter pnome = new SqlParameter("@nome", SqlDbType.NVarChar, 100)
+
+                SqlParameter pnome = new SqlParameter("@nome", SqlDbType.VarChar, 100)
                 {
                     Value = cliente.Nome
                 };
                 cmd.Parameters.Add(pnome);
-                SqlParameter pemail = new SqlParameter("@email", SqlDbType.NVarChar, 100)
+
+                SqlParameter pcpfcnpj = new SqlParameter("@cpfcnpj", SqlDbType.VarChar, 20)
                 {
-                    Value = cliente.Email
+                    Value = cliente.CPFCNPJ
                 };
-                cmd.Parameters.Add(pemail);
-                SqlParameter ptelefone = new SqlParameter("@telefone", SqlDbType.NVarChar, 80)
+                cmd.Parameters.Add(pcpfcnpj);
+
+                SqlParameter plogradouro = new SqlParameter("@logradouro", SqlDbType.VarChar, 80)
                 {
-                    Value = cliente.Telefone
+                    Value = cliente.Logradouro
                 };
-                cmd.Parameters.Add(ptelefone);
-                SqlParameter pcidade = new SqlParameter("@cidade", SqlDbType.NVarChar, 20)
+                cmd.Parameters.Add(plogradouro);
+
+                SqlParameter pbairro = new SqlParameter("@bairro", SqlDbType.VarChar, 50)
+                {
+                    Value = cliente.Bairro
+                };
+                cmd.Parameters.Add(pbairro);
+
+                SqlParameter pcidade = new SqlParameter("@cidade", SqlDbType.VarChar, 50)
                 {
                     Value = cliente.Cidade
                 };
                 cmd.Parameters.Add(pcidade);
-                SqlParameter puf = new SqlParameter("@UF", SqlDbType.NVarChar, 2)
+
+                SqlParameter puf = new SqlParameter("@UF", SqlDbType.VarChar, 2)
                 {
                     Value = cliente.UF
                 };
                 cmd.Parameters.Add(puf);
+
+                SqlParameter pcep = new SqlParameter("@CEP", SqlDbType.VarChar, 8)
+                {
+                    Value = cliente.CEP
+                };
+                cmd.Parameters.Add(pcep);
+
+                SqlParameter pemail = new SqlParameter("@email", SqlDbType.VarChar, 100)
+                {
+                    Value = cliente.Email
+                };
+                cmd.Parameters.Add(pemail);
+
+                SqlParameter ptelefone = new SqlParameter("@telefone", SqlDbType.VarChar, 11)
+                {
+                    Value = cliente.Telefone
+                };
+                cmd.Parameters.Add(ptelefone);
+
+                SqlParameter ptelefone2 = new SqlParameter("@telefone2", SqlDbType.VarChar, 11)
+                {
+                    Value = cliente.Telefone2
+                };
+                cmd.Parameters.Add(ptelefone2);
+
+                SqlParameter pdatacadastro = new SqlParameter("@datacadastro", SqlDbType.DateTime)
+                {
+                    Value = cliente.DataCadastro
+                };
+                cmd.Parameters.Add(pdatacadastro);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
