@@ -41,6 +41,12 @@ namespace Estoque.DAL
                 };
                 cmd.Parameters.Add(pcpfcnpj);
 
+                SqlParameter prg = new SqlParameter("@rg", SqlDbType.VarChar, 9)
+                {
+                    Value = cliente.RG
+                };
+                cmd.Parameters.Add(prg);
+
                 SqlParameter plogradouro = new SqlParameter("@logradouro", SqlDbType.VarChar, 80)
                 {
                     Value = cliente.Logradouro
@@ -149,6 +155,12 @@ namespace Estoque.DAL
                     Value = cliente.CPFCNPJ
                 };
                 cmd.Parameters.Add(pcpfcnpj);
+
+                SqlParameter prg = new SqlParameter("@rg", SqlDbType.VarChar, 9)
+                {
+                    Value = cliente.RG
+                };
+                cmd.Parameters.Add(prg);
 
                 SqlParameter plogradouro = new SqlParameter("@logradouro", SqlDbType.VarChar, 80)
                 {

@@ -25,6 +25,13 @@ namespace Estoque.Modelos
             set { _cpfcnpj = value; }
         }
 
+        private string _rg;
+        public string RG
+        {
+            get { return _rg; }
+            set { _rg = value; }
+        }
+
         private string _logradouro;
         public string Logradouro
         {

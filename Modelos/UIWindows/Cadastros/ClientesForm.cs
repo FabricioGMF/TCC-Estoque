@@ -33,15 +33,16 @@ namespace UIWindows
                     txtCodigo.Text = dgvClientes[0, dgvClientes.CurrentRow.Index].Value.ToString();
                     txtNome.Text = dgvClientes[1, dgvClientes.CurrentRow.Index].Value.ToString();
                     mskCPF_CNPJ.Text = dgvClientes[2, dgvClientes.CurrentRow.Index].Value.ToString();
-                    txtLogradouro.Text = dgvClientes[3, dgvClientes.CurrentRow.Index].Value.ToString();
-                    txtBairro.Text = dgvClientes[4, dgvClientes.CurrentRow.Index].Value.ToString();
-                    txtCidade.Text = dgvClientes[5, dgvClientes.CurrentRow.Index].Value.ToString();
-                    cmbUF.Text = dgvClientes[6, dgvClientes.CurrentRow.Index].Value.ToString();
-                    mskCEP.Text = dgvClientes[7, dgvClientes.CurrentRow.Index].Value.ToString();
-                    txtEmail.Text = dgvClientes[8, dgvClientes.CurrentRow.Index].Value.ToString();
-                    mskTelefone.Text = dgvClientes[9, dgvClientes.CurrentRow.Index].Value.ToString();
-                    mskTelefone2.Text = dgvClientes[10, dgvClientes.CurrentRow.Index].Value.ToString();
-                    dtpDataCadastro.Text = dgvClientes[11, dgvClientes.CurrentRow.Index].Value.ToString();
+                    mskRG.Text = dgvClientes[3, dgvClientes.CurrentRow.Index].Value.ToString();
+                    txtLogradouro.Text = dgvClientes[4, dgvClientes.CurrentRow.Index].Value.ToString();
+                    txtBairro.Text = dgvClientes[5, dgvClientes.CurrentRow.Index].Value.ToString();
+                    txtCidade.Text = dgvClientes[6, dgvClientes.CurrentRow.Index].Value.ToString();
+                    cmbUF.Text = dgvClientes[7, dgvClientes.CurrentRow.Index].Value.ToString();
+                    mskCEP.Text = dgvClientes[8, dgvClientes.CurrentRow.Index].Value.ToString();
+                    txtEmail.Text = dgvClientes[9, dgvClientes.CurrentRow.Index].Value.ToString();
+                    mskTelefone.Text = dgvClientes[10, dgvClientes.CurrentRow.Index].Value.ToString();
+                    mskTelefone2.Text = dgvClientes[11, dgvClientes.CurrentRow.Index].Value.ToString();
+                    dtpDataCadastro.Text = dgvClientes[12, dgvClientes.CurrentRow.Index].Value.ToString();
                 }
 
                 if (dgvClientes.RowCount > 0)
@@ -49,6 +50,7 @@ namespace UIWindows
                     txtCodigo.Text = "";
                     txtNome.Text = "";
                     mskCPF_CNPJ.Text = "";
+                    mskRG.Text = "";
                     txtLogradouro.Text = "";
                     txtBairro.Text = "";
                     txtCidade.Text = "";
@@ -64,6 +66,7 @@ namespace UIWindows
                 txtCodigo.Text = "";
                 txtNome.Text = "";
                 mskCPF_CNPJ.Text = "";
+                mskRG.Text = "";
                 txtLogradouro.Text = "";
                 txtBairro.Text = "";
                 txtCidade.Text = "";
@@ -81,6 +84,7 @@ namespace UIWindows
             txtCodigo.Text = "";
             txtNome.Text = "";
             mskCPF_CNPJ.Text = "";
+            mskRG.Text = "";
             txtLogradouro.Text = "";
             txtBairro.Text = "";
             txtCidade.Text = "";
@@ -99,6 +103,7 @@ namespace UIWindows
                 ClienteInformation cliente = new ClienteInformation();
                 cliente.Nome = txtNome.Text;
                 cliente.CPFCNPJ = mskCPF_CNPJ.Text;
+                cliente.RG = mskRG.Text;
                 cliente.Logradouro = txtLogradouro.Text;
                 cliente.Bairro = txtBairro.Text;
                 cliente.Cidade = txtCidade.Text;
@@ -136,6 +141,7 @@ namespace UIWindows
                     cliente.Codigo = int.Parse(txtCodigo.Text);
                     cliente.Nome = txtNome.Text;
                     cliente.CPFCNPJ = mskCPF_CNPJ.Text;
+                    cliente.RG = mskRG.Text;
                     cliente.Logradouro = txtLogradouro.Text;
                     cliente.Bairro = txtBairro.Text;
                     cliente.Cidade = txtCidade.Text;
@@ -196,15 +202,16 @@ namespace UIWindows
             txtCodigo.Text = dgvClientes[0, dgvClientes.CurrentRow.Index].Value.ToString();
             txtNome.Text = dgvClientes[1, dgvClientes.CurrentRow.Index].Value.ToString();
             mskCPF_CNPJ.Text = dgvClientes[2, dgvClientes.CurrentRow.Index].Value.ToString();
-            txtLogradouro.Text = dgvClientes[3, dgvClientes.CurrentRow.Index].Value.ToString();
-            txtBairro.Text = dgvClientes[4, dgvClientes.CurrentRow.Index].Value.ToString();
-            txtCidade.Text = dgvClientes[5, dgvClientes.CurrentRow.Index].Value.ToString();
-            cmbUF.Text = dgvClientes[6, dgvClientes.CurrentRow.Index].Value.ToString();
-            mskCEP.Text = dgvClientes[7, dgvClientes.CurrentRow.Index].Value.ToString();
-            txtEmail.Text = dgvClientes[8, dgvClientes.CurrentRow.Index].Value.ToString();
-            mskTelefone.Text = dgvClientes[9, dgvClientes.CurrentRow.Index].Value.ToString();
-            mskTelefone2.Text = dgvClientes[10, dgvClientes.CurrentRow.Index].Value.ToString();
-            dtpDataCadastro.Text = dgvClientes[11, dgvClientes.CurrentRow.Index].Value.ToString();
+            mskRG.Text = dgvClientes[3, dgvClientes.CurrentRow.Index].Value.ToString();
+            txtLogradouro.Text = dgvClientes[4, dgvClientes.CurrentRow.Index].Value.ToString();
+            txtBairro.Text = dgvClientes[5, dgvClientes.CurrentRow.Index].Value.ToString();
+            txtCidade.Text = dgvClientes[6, dgvClientes.CurrentRow.Index].Value.ToString();
+            cmbUF.Text = dgvClientes[7, dgvClientes.CurrentRow.Index].Value.ToString();
+            mskCEP.Text = dgvClientes[8, dgvClientes.CurrentRow.Index].Value.ToString();
+            txtEmail.Text = dgvClientes[9, dgvClientes.CurrentRow.Index].Value.ToString();
+            mskTelefone.Text = dgvClientes[10, dgvClientes.CurrentRow.Index].Value.ToString();
+            mskTelefone2.Text = dgvClientes[11, dgvClientes.CurrentRow.Index].Value.ToString();
+            dtpDataCadastro.Text = dgvClientes[12, dgvClientes.CurrentRow.Index].Value.ToString();
         }
 
         //Definir máscara do campo de CPF/CNPJ, conforme a opção selecionada:
