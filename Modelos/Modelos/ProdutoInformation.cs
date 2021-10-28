@@ -15,25 +15,32 @@ namespace Estoque
             set { _codigo = value; }
         }
 
+        private string _descricao;
+        public string Descricao
+        {
+            get { return _descricao; }
+            set { _descricao = value; }
+        }
+
+        private decimal _valorCompra;
+        public decimal ValorCompra
+        {
+            get { return _valorCompra; }
+            set { _valorCompra = value; }
+        }
+
+        private decimal _valorVenda;
+        public decimal ValorVenda
+        {
+            get { return _valorVenda; }
+            set { _valorVenda = value; }
+        }
+
         private int _estoque;
         public int Estoque
         {
             get { return _estoque; }
             set { _estoque = value; }
-        }
-
-        private string _nome;
-        public string Nome
-        {
-            get { return _nome; }
-            set { _nome = value; }
-        }
-
-        private decimal _preco;
-        public decimal Preco
-        {
-            get { return _preco; }
-            set { _preco = value; }
         }
 
         private int _estoqueMinimo;
@@ -55,13 +62,6 @@ namespace Estoque
         {
             get { return _estoqueSeguranca; }
             set { _estoqueSeguranca = value; }
-        }
-
-        private int _estoqueTotal;
-        public int EstoqueTotal
-        {
-            get { return _estoqueTotal; }
-            set { _estoqueTotal = value; }
         }
     }
 }

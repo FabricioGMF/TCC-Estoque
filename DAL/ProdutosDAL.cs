@@ -10,7 +10,7 @@ namespace Estoque
         public ArrayList ProdutosEmFalta()
         {
             SqlConnection cn = new SqlConnection(Dados.StringDeConexao);
-            SqlCommand cmd = new SqlCommand("Select * from Produtos Where Estoque_Total < Estoque_Minimo", cn);
+            SqlCommand cmd = new SqlCommand("Select * from Produtos Where Estoque = Estoque_Minimo and Estoque_Seguranca = 0", cn);
 
             cn.Open();
 
@@ -21,19 +21,32 @@ namespace Estoque
             {
                 ProdutoInformation produto = new ProdutoInformation();
                 produto.Codigo = Convert.ToInt32(dr["codigo"]);
-                produto.Nome = dr["nome"].ToString();
+                produto.Descricao = dr["descricao"].ToString();
+                produto.ValorCompra = Convert.ToDecimal(dr["valor_compra"]);
+                produto.ValorVenda = Convert.ToDecimal(dr["valor_venda"]);
                 produto.Estoque = Convert.ToInt32(dr["estoque"]);
-                produto.Preco = Convert.ToDecimal(dr["preco"]);
                 produto.EstoqueMinimo = Convert.ToInt32(dr["estoque_minimo"]);
                 produto.EstoqueMaximo = Convert.ToInt32(dr["estoque_maximo"]);
                 produto.EstoqueSeguranca = Convert.ToInt32(dr["estoque_seguranca"]);
-                produto.EstoqueTotal = Convert.ToInt32(dr["estoque_total"]);
                 lista.Add(produto);
             }
             dr.Close();
             cn.Close();
 
             return lista;
+        }
+
+        public int Uso_EstoqueSeguranca(ProdutoInformation produto)
+        {
+            if (produto.Estoque == produto.EstoqueMinimo)
+            {
+                //SqlConnection cn = new SqlConnection(Dados.StringDeConexao);
+                //SqlCommand cmd = new SqlCommand("Update Produtos set Estoque = Estoque + Estoque_Seguranca, Estoque_Seguranca = 0 where Estoque = Estoque * 0.1", cn);
+
+                produto.Estoque += produto.EstoqueSeguranca; //produto.Estoque = produto.Estoque + produto.EstoqueSeguranca;
+                produto.EstoqueSeguranca = 0;
+            }
+            return (int)produto.Estoque;
         }
 
         public void Incluir(ProdutoInformation produto)
@@ -45,15 +58,15 @@ namespace Estoque
                 cn.ConnectionString = Dados.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "insert into produtos (nome, preco, estoque, estoque_minimo, estoque_maximo, estoque_seguranca, estoque_total) values (@nome, @preco, @estoque, @estoque_minimo, @estoque_maximo, @estoque_seguranca, @estoque_total); select @@IDENTITY";
+                cmd.CommandText = "insert into produtos (descricao, valorcompra, valorvenda, estoque, estoque_minimo, estoque_maximo, estoque_seguranca) values (@descricao, @valorcompra, @valorvenda, @estoque, @estoque_minimo, @estoque_maximo, @estoque_seguranca); select @@IDENTITY";
 
-                cmd.Parameters.AddWithValue("@nome", produto.Nome);
-                cmd.Parameters.AddWithValue("@preco", produto.Preco);
+                cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
+                cmd.Parameters.AddWithValue("@valorcompra", produto.ValorCompra);
+                cmd.Parameters.AddWithValue("@valorvenda", produto.ValorVenda);
                 cmd.Parameters.AddWithValue("@estoque", produto.Estoque);
                 cmd.Parameters.AddWithValue("@estoque_minimo", produto.EstoqueMinimo);
                 cmd.Parameters.AddWithValue("@estoque_maximo", produto.EstoqueMaximo);
                 cmd.Parameters.AddWithValue("@estoque_seguranca", produto.EstoqueSeguranca);
-                cmd.Parameters.AddWithValue("@estoque_total", produto.EstoqueTotal);
                 
                 cn.Open();
                 produto.Codigo = Convert.ToInt32(cmd.ExecuteScalar());
@@ -84,15 +97,15 @@ namespace Estoque
                 cmd.CommandText = "Alterar Produto";
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "update produtos set nome= @nome, preco= @preco, estoque=@estoque, estoque_minimo=@estoque_minimo, estoque_maximo=@estoque_maximo, estoque_seguranca=@estoque_seguranca, estoque_total=@estoque_total where codigo= @codigo;";
+                cmd.CommandText = "update produtos set descricao= @descricao, valorcompra= @valorcompra, valorvenda=@valorvenda, estoque=@estoque, estoque_minimo=@estoque_minimo, estoque_maximo=@estoque_maximo, estoque_seguranca=@estoque_seguranca where codigo= @codigo;";
 
-                cmd.Parameters.AddWithValue("@nome", produto.Nome);
-                cmd.Parameters.AddWithValue("@preco", produto.Preco);
+                cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
+                cmd.Parameters.AddWithValue("@valorcompra", produto.ValorCompra);
+                cmd.Parameters.AddWithValue("@valorvenda", produto.ValorVenda);
                 cmd.Parameters.AddWithValue("@estoque", produto.Estoque);
                 cmd.Parameters.AddWithValue("@estoque_minimo", produto.EstoqueMinimo);
                 cmd.Parameters.AddWithValue("@estoque_maximo", produto.EstoqueMaximo);
                 cmd.Parameters.AddWithValue("@estoque_seguranca", produto.EstoqueSeguranca);
-                cmd.Parameters.AddWithValue("@estoque_total", produto.EstoqueTotal);
                 cmd.Parameters.AddWithValue("@Codigo", produto.Codigo);
 
                 // cmd.Parameters.Add("@valorEstoque", SqlDbType.Int);

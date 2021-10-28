@@ -22,56 +22,56 @@ namespace UIWindows
                 if (dgvProdutos.CurrentRow != null)
                 {
                     txtCodigo.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtNome.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtPreco.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoque.Text = dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoqueMinimo.Text = dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoqueMaximo.Text = dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoqueSeguranca.Text = dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoqueTotal.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtDescricao.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtValorCompra.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtValorVenda.Text = dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtEstoque.Text = dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtEstoqueMinimo.Text = dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtEstoqueMaximo.Text = dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    txtEstoqueSeguranca.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
                 }
 
                 if (dgvProdutos.RowCount > 0)
                 {
                     txtCodigo.Text = "";
-                    txtNome.Text = "";
-                    txtPreco.Text = "";
+                    txtDescricao.Text = "";
+                    txtValorCompra.Text = "";
+                    txtValorVenda.Text = "";
                     txtEstoque.Text = "";
                     txtEstoqueMinimo.Text = "";
                     txtEstoqueMaximo.Text = "";
                     txtEstoqueSeguranca.Text = "";
-                    txtEstoqueTotal.Text = "";
                 }
             }
             catch
             {
                 txtCodigo.Text = "";
-                txtNome.Text = "";
-                txtPreco.Text = "";
+                txtDescricao.Text = "";
+                txtValorCompra.Text = "";
+                txtValorVenda.Text = "";
                 txtEstoque.Text = "";
                 txtEstoqueMinimo.Text = "";
                 txtEstoqueMaximo.Text = "";
                 txtEstoqueSeguranca.Text = "";
-                txtEstoqueTotal.Text = "";
             }
         }
 
         private void ProdutosForm_Load(object sender, EventArgs e)
         {            
             AtualizaGrid();
-            txtNome.Focus();
+            txtDescricao.Focus();
         }
 
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
             txtCodigo.Text = "";
-            txtNome.Text = "";
-            txtPreco.Text = "";
+            txtDescricao.Text = "";
+            txtValorCompra.Text = "";
+            txtValorVenda.Text = "";
             txtEstoque.Text = "";
             txtEstoqueMinimo.Text = "";
             txtEstoqueMaximo.Text = "";
             txtEstoqueSeguranca.Text = "";
-            txtEstoqueTotal.Text = "";
         }
 
         private void BtnIncluir_Click(object sender, EventArgs e)
@@ -79,15 +79,18 @@ namespace UIWindows
             try
             {
                 ProdutoInformation produto = new ProdutoInformation();
-                produto.Nome = txtNome.Text;
-                produto.Preco = Convert.ToDecimal(txtPreco.Text);
+                produto.Descricao = txtDescricao.Text;
+                produto.ValorCompra = Convert.ToDecimal(txtValorCompra.Text);
+                produto.ValorVenda = Convert.ToDecimal(txtValorVenda.Text);
                 produto.Estoque = Convert.ToInt32(txtEstoque.Text);
                 produto.EstoqueMinimo = Convert.ToInt32(txtEstoqueMinimo.Text);
                 produto.EstoqueMaximo = Convert.ToInt32(txtEstoqueMaximo.Text);
-                produto.EstoqueSeguranca = Convert.ToInt32(txtEstoqueSeguranca.Text);
 
-                txtEstoqueTotal.Text = (produto.Estoque + produto.EstoqueSeguranca).ToString();
-                produto.EstoqueTotal = Convert.ToInt32(txtEstoqueTotal.Text);
+                if (produto.EstoqueMaximo >= 10)
+                {
+                    txtEstoqueSeguranca.Text = (produto.EstoqueMaximo * 0.1).ToString();
+                    produto.EstoqueSeguranca = Convert.ToInt32(txtEstoqueSeguranca.Text);
+                }
 
                 ProdutosBLL obj = new ProdutosBLL();
                 obj.Incluir(produto);
@@ -114,14 +117,18 @@ namespace UIWindows
                 {
                     ProdutoInformation produto = new ProdutoInformation();
                     produto.Codigo = int.Parse(txtCodigo.Text);
-                    produto.Nome = txtNome.Text;
+                    produto.Descricao = txtDescricao.Text;
+                    produto.ValorCompra = Convert.ToDecimal(txtValorCompra.Text);
+                    produto.ValorVenda = Convert.ToDecimal(txtValorVenda.Text);
                     produto.Estoque = Convert.ToInt32(txtEstoque.Text);
                     produto.EstoqueMinimo = Convert.ToInt32(txtEstoqueMinimo.Text);
                     produto.EstoqueMaximo = Convert.ToInt32(txtEstoqueMaximo.Text);
-                    produto.EstoqueSeguranca = Convert.ToInt32(txtEstoqueSeguranca.Text);
 
-                    txtEstoqueTotal.Text = (produto.Estoque + produto.EstoqueSeguranca).ToString();
-                    produto.EstoqueTotal = Convert.ToInt32(txtEstoqueTotal.Text);
+                    if (produto.EstoqueMaximo >= 10)
+                    {
+                        txtEstoqueSeguranca.Text = (produto.EstoqueMaximo * 0.1).ToString();
+                        produto.EstoqueSeguranca = Convert.ToInt32(txtEstoqueSeguranca.Text);
+                    }
 
                     ProdutosBLL obj = new ProdutosBLL();
                     obj.Alterar(produto);
@@ -166,14 +173,39 @@ namespace UIWindows
 
         private void DgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             txtCodigo.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtNome.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtPreco.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoque.Text = dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoqueMinimo.Text = dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoqueMaximo.Text = dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoqueSeguranca.Text = dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoqueTotal.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtDescricao.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtValorCompra.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtValorVenda.Text = dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtEstoque.Text = dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtEstoqueMinimo.Text = dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtEstoqueMaximo.Text = dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value.ToString();
+            txtEstoqueSeguranca.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
+        }
+
+        private void TxtEstoque_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtEstoqueMinimo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtEstoqueMaximo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -15,14 +15,24 @@ namespace BLL
 
         public void Incluir(ProdutoInformation produto)
         {
-            if (produto.Nome.Trim().Length == 0)
+            if (produto.Descricao.Trim().Length == 0)
             {
                 throw new Exception("O nome do produto é obrigatório");
             }
 
-            if(produto.Preco < 0)
+            if(produto.ValorVenda < 0)
             {
-                throw new Exception("O preço do produto não pode ser negativo");
+                throw new Exception("O valor de venda do produto não pode ser negativo");
+            }
+
+            if (produto.ValorCompra < 0)
+            {
+                throw new Exception("O valor de compra do produto não pode ser negativo");
+            }
+
+            if (produto.ValorVenda < produto.ValorCompra)
+            {
+                throw new Exception("O valor de venda não pode ser menor que o valor de compra");
             }
 
             if (produto.Estoque < 0)
@@ -35,9 +45,9 @@ namespace BLL
                 throw new Exception("O estoque mínimo do produto não pode ser negativo");
             }
 
-            if (produto.EstoqueMaximo < 0)
+            if (produto.EstoqueMaximo < 10)
             {
-                throw new Exception("O estoque máximo do produto não pode ser negativo");
+                throw new Exception("O estoque máximo do produto não pode ser menor que 10");
             }
 
             if (produto.EstoqueSeguranca < 0)
@@ -59,31 +69,41 @@ namespace BLL
             {
                 throw new Exception("O estoque mínimo e/ou estoque máximo não podem ser iguais a 0");
             }
-
-            if (produto.EstoqueTotal > produto.EstoqueMaximo)
+            //---Alteração (teste):
+            if (produto.Estoque > produto.EstoqueMaximo)
             {
-                throw new Exception("O estoque total não pode estar acima do estoque máximo");
+                throw new Exception("O estoque não pode estar acima do estoque máximo");
             }
 
-            if (produto.EstoqueTotal < produto.EstoqueMinimo)
+            if (produto.Estoque < produto.EstoqueMinimo)
             {
-                throw new Exception("O estoque total não pode estar abaixo do estoque mínimo");
+                throw new Exception("O estoque não pode estar abaixo do estoque mínimo");
             }
-
+            //---
             ProdutosDAL obj = new ProdutosDAL();
             obj.Incluir(produto);
         }
 
         public void Alterar(ProdutoInformation produto)
         {
-            if (produto.Nome.Trim().Length == 0)
+            if (produto.Descricao.Trim().Length == 0)
             {
                 throw new Exception("O nome do produto é obrigatório");
             }
 
-            if (produto.Preco < 0)
+            if (produto.ValorVenda < 0)
             {
-                throw new Exception("O preço do produto não pode ser negativo");
+                throw new Exception("O valor de venda do produto não pode ser negativo");
+            }
+
+            if (produto.ValorCompra < 0)
+            {
+                throw new Exception("O valor de compra do produto não pode ser negativo");
+            }
+
+            if (produto.ValorVenda < produto.ValorCompra)
+            {
+                throw new Exception("O valor de venda não pode ser menor que o valor de compra");
             }
 
             if (produto.Estoque < 0)
@@ -96,9 +116,9 @@ namespace BLL
                 throw new Exception("O estoque mínimo do produto não pode ser negativo");
             }
 
-            if (produto.EstoqueMaximo < 0)
+            if (produto.EstoqueMaximo < 10)
             {
-                throw new Exception("O estoque máximo do produto não pode ser negativo");
+                throw new Exception("O estoque máximo do produto não pode ser menor que 10");
             }
 
             if (produto.EstoqueSeguranca < 0)
@@ -121,14 +141,14 @@ namespace BLL
                 throw new Exception("O estoque mínimo e/ou estoque máximo não podem ser iguais a 0");
             }
 
-            if (produto.EstoqueTotal > produto.EstoqueMaximo)
+            if (produto.Estoque > produto.EstoqueMaximo)
             {
-                throw new Exception("O estoque total não pode estar acima do estoque máximo");
+                throw new Exception("O estoque não pode estar acima do estoque máximo");
             }
 
-            if (produto.EstoqueTotal < produto.EstoqueMinimo)
+            if (produto.Estoque < produto.EstoqueMinimo)
             {
-                throw new Exception("O estoque total não pode estar abaixo do estoque mínimo");
+                throw new Exception("O estoque não pode estar abaixo do estoque mínimo");
             }
 
             ProdutosDAL obj = new ProdutosDAL();
@@ -145,6 +165,12 @@ namespace BLL
         {
             ProdutosDAL obj = new ProdutosDAL();
             return obj.Listagem(filtro);
+        }
+
+        public int Uso_EstoqueSeguranca(ProdutoInformation produto)
+        {
+            ProdutosDAL obj = new ProdutosDAL();
+            return obj.Uso_EstoqueSeguranca(produto);
         }
     }
 }
