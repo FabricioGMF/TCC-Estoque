@@ -9,10 +9,10 @@ namespace BLL
     {
         public void Incluir(ClienteInformation cliente)
         {
-            if (cliente.Nome.Trim().Length == 0) //O nome do cliente é obrigatório
-            {
-                throw new Exception("O nome/razão social do cliente é obrigatório");
-            }
+            //if (cliente.Nome.Trim().Length == 0) //O nome do cliente é obrigatório
+            //{
+            //    throw new Exception("O nome/razão social do cliente é obrigatório");
+            //}
 
             cliente.Email = cliente.Email.ToLower(); //Email é sempre em letras minúsculas
 
@@ -22,10 +22,10 @@ namespace BLL
 
         public void Alterar(ClienteInformation cliente)
         {
-            if (cliente.Nome.Trim().Length == 0)
-            {
-                throw new Exception("O nome/razão social do cliente é obrigatório");
-            }
+            //if (cliente.Nome.Trim().Length == 0)
+            //{
+            //    throw new Exception("O nome/razão social do cliente é obrigatório");
+            //}
 
             cliente.Email = cliente.Email.ToLower();
 

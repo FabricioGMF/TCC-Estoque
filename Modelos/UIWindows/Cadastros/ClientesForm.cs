@@ -113,12 +113,21 @@ namespace UIWindows
                 cliente.Telefone = mskTelefone.Text;
                 cliente.Telefone2 = mskTelefone2.Text;
                 cliente.DataCadastro = dtpDataCadastro.Value;
-                
+
+                Valida_Campos_Cliente(); //Validação de Campos
+
                 ClientesBLL obj = new ClientesBLL();
-                obj.Incluir(cliente);
-                MessageBox.Show("O cliente foi incluido com sucesso!");
-                txtCodigo.Text = Convert.ToString(cliente.Codigo);
-                AtualizaGrid();
+
+                if(txtNome.Text.Length != 0 && mskCPF_CNPJ.Text.Length != 0 && mskRG.Text.Length != 0 &&
+                    txtLogradouro.Text.Length != 0 && txtBairro.Text.Length != 0 && txtCidade.Text.Length != 0 ||
+                    cmbUF.Text.Length != 0 && mskCEP.Text.Length != 0 && txtEmail.Text.Length != 0 &&
+                    mskTelefone.Text.Length != 0)
+                {
+                    obj.Incluir(cliente);
+                    MessageBox.Show("O cliente foi incluido com sucesso!");
+                    txtCodigo.Text = Convert.ToString(cliente.Codigo);
+                    AtualizaGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -152,10 +161,19 @@ namespace UIWindows
                     cliente.Telefone2 = mskTelefone2.Text;
                     cliente.DataCadastro = dtpDataCadastro.Value;
 
+                    Valida_Campos_Cliente(); //Validação de Campos
+
                     ClientesBLL obj = new ClientesBLL();
-                    obj.Alterar(cliente);
-                    MessageBox.Show("O cliente foi alterado com sucesso!");
-                    AtualizaGrid();
+
+                    if (txtNome.Text.Length != 0 && mskCPF_CNPJ.Text.Length != 0 && mskRG.Text.Length != 0 &&
+                        txtLogradouro.Text.Length != 0 && txtBairro.Text.Length != 0 && txtCidade.Text.Length != 0 ||
+                        cmbUF.Text.Length != 0 && mskCEP.Text.Length != 0 && txtEmail.Text.Length != 0 &&
+                        mskTelefone.Text.Length != 0)
+                    {
+                        obj.Alterar(cliente);
+                        MessageBox.Show("O cliente foi alterado com sucesso!");
+                        AtualizaGrid();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -264,6 +282,120 @@ namespace UIWindows
             if (!char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        //Validação de campos:
+        public void Valida_Campos_Cliente()
+        {
+            //- Nome/Razão Social:
+            if (txtNome.Text.Trim().Length == 0)
+            {
+                errNomeRazao.SetError(txtNome, "Digite o nome ou razão social do cliente");
+            }
+            else
+            {
+                errNomeRazao.Clear();
+            }
+
+            //- CPF/CNPJ:
+            if (mskCPF_CNPJ.Text.Trim().Length == 0)
+            {
+                errCPF_CNPJ.SetError(mskCPF_CNPJ, "Digite um CPF ou CNPJ válido");
+            }
+            else
+            {
+                errCPF_CNPJ.Clear();
+            }
+
+            //- CPF/CNPJ (Seleção de opção):
+            if (cmbCPF_CNPJ.Text == "")
+            {
+                errOpCPF_CNPJ.SetError(cmbCPF_CNPJ, "Selecione uma opção");
+            }
+            else
+            {
+                errOpCPF_CNPJ.Clear();
+            }
+
+            //- RG:
+            if (mskRG.Text == "")
+            {
+                errRG.SetError(mskRG, "Digite um RG válido");
+            }
+            else
+            {
+                errRG.Clear();
+            }
+
+            //- Logradouro:
+            if (txtLogradouro.Text == "")
+            {
+                errLogradouro.SetError(txtLogradouro, "Digite um logradouro");
+            }
+            else
+            {
+                errLogradouro.Clear();
+            }
+
+            //- Bairro:
+            if (txtBairro.Text == "")
+            {
+                errBairro.SetError(txtBairro, "Digite um bairro");
+            }
+            else
+            {
+                errBairro.Clear();
+            }
+
+            //- Cidade:
+            if (txtCidade.Text == "")
+            {
+                errCidade.SetError(txtCidade, "Digite uma cidade");
+            }
+            else
+            {
+                errCidade.Clear();
+            }
+
+            //- UF:
+            if (cmbUF.Text == "")
+            {
+                errUF.SetError(cmbUF, "Selecione um estado");
+            }
+            else
+            {
+                errUF.Clear();
+            }
+
+            //- CEP:
+            if (mskCEP.Text == "")
+            {
+                errCEP.SetError(mskCEP, "Digite um CEP válido");
+            }
+            else
+            {
+                errCEP.Clear();
+            }
+
+            //- E-mail:
+            if(txtEmail.Text == "")
+            {
+                errEmail.SetError(txtEmail, "Digite um e-mail válido");
+            }
+            else
+            {
+                errEmail.Clear();
+            }
+
+            //- Telefone:
+            if (mskTelefone.Text == "")
+            {
+                errTelefone1.SetError(mskTelefone, "Digite um telefone válido");
+            }
+            else
+            {
+                errTelefone1.Clear();
             }
         }
     }

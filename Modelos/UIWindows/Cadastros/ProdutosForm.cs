@@ -223,5 +223,78 @@ namespace UIWindows
                 e.Handled = true;
             }
         }
+
+        //Validação de campos:
+        private void TxtDescricao_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDescricao.Text == "")
+            {
+                errDescricao.SetError(txtDescricao, "Digite a descrição");
+            }
+            else
+            {
+                errDescricao.Clear();
+            }
+        }
+
+        private void TxtValorCompra_TextChanged(object sender, EventArgs e)
+        {
+            if (txtValorCompra.Text == "")
+            {
+                errValorCompra.SetError(txtValorCompra, "Digite o valor de compra");
+            }
+            else
+            {
+                errValorCompra.Clear();
+            }
+        }
+
+        private void TxtEstoque_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEstoque.Text == "")
+            {
+                errEstoque.SetError(txtEstoque, "Digite o estoque");
+            }
+            else
+            {
+                errEstoque.Clear();
+            }
+        }
+
+        private void TxtValorVenda_TextChanged(object sender, EventArgs e)
+        {
+            if (txtValorVenda.Text == "")
+            {
+                errValorVenda.SetError(txtValorVenda, "Digite o valor de venda");
+            }
+            else
+            {
+                errValorVenda.Clear();
+            }
+        }
+
+        private void TxtEstoqueMinimo_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEstoqueMinimo.Text == "")
+            {
+                errEstoqueMinimo.SetError(txtEstoqueMinimo, "Digite o estoque mínimo");
+            }
+            else
+            {
+                errEstoqueMinimo.Clear();
+            }
+        }
+
+        private void TxtEstoqueMaximo_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEstoqueMaximo.Text == "")
+            {
+                errEstoqueMaximo.SetError(txtEstoqueMaximo, "Digite o estoque máximo");
+            }
+            else
+            {
+                errEstoqueMaximo.Clear();
+            }
+        }
     }
 }

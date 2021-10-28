@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -51,7 +52,20 @@
             this.lblEstoqueSeguranca = new System.Windows.Forms.Label();
             this.txtValorCompra = new System.Windows.Forms.TextBox();
             this.lblValorCompra = new System.Windows.Forms.Label();
+            this.errValorCompra = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errDescricao = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errEstoque = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errValorVenda = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errEstoqueMinimo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errEstoqueMaximo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errValorCompra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errDescricao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEstoque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errValorVenda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMinimo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMaximo)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvProdutos
@@ -65,14 +79,14 @@
             this.dgvProdutos.Location = new System.Drawing.Point(11, 182);
             this.dgvProdutos.Name = "dgvProdutos";
             this.dgvProdutos.ReadOnly = true;
-            this.dgvProdutos.Size = new System.Drawing.Size(433, 276);
+            this.dgvProdutos.Size = new System.Drawing.Size(433, 262);
             this.dgvProdutos.TabIndex = 30;
             this.dgvProdutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProdutos_CellClick);
             // 
             // btnFiltro
             // 
             this.btnFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFiltro.Location = new System.Drawing.Point(369, 467);
+            this.btnFiltro.Location = new System.Drawing.Point(369, 450);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(75, 23);
             this.btnFiltro.TabIndex = 29;
@@ -123,7 +137,7 @@
             // txtFiltro
             // 
             this.txtFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtFiltro.Location = new System.Drawing.Point(11, 469);
+            this.txtFiltro.Location = new System.Drawing.Point(11, 452);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(347, 20);
             this.txtFiltro.TabIndex = 24;
@@ -134,6 +148,7 @@
             this.txtEstoque.Name = "txtEstoque";
             this.txtEstoque.Size = new System.Drawing.Size(75, 20);
             this.txtEstoque.TabIndex = 23;
+            this.txtEstoque.TextChanged += new System.EventHandler(this.TxtEstoque_TextChanged);
             this.txtEstoque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEstoque_KeyPress);
             // 
             // txtValorVenda
@@ -142,6 +157,7 @@
             this.txtValorVenda.Name = "txtValorVenda";
             this.txtValorVenda.Size = new System.Drawing.Size(75, 20);
             this.txtValorVenda.TabIndex = 22;
+            this.txtValorVenda.TextChanged += new System.EventHandler(this.TxtValorVenda_TextChanged);
             // 
             // txtDescricao
             // 
@@ -149,6 +165,7 @@
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(306, 20);
             this.txtDescricao.TabIndex = 21;
+            this.txtDescricao.TextChanged += new System.EventHandler(this.TxtDescricao_TextChanged);
             // 
             // txtCodigo
             // 
@@ -163,27 +180,27 @@
             this.lblEstoque.AutoSize = true;
             this.lblEstoque.Location = new System.Drawing.Point(8, 98);
             this.lblEstoque.Name = "lblEstoque";
-            this.lblEstoque.Size = new System.Drawing.Size(49, 13);
+            this.lblEstoque.Size = new System.Drawing.Size(56, 13);
             this.lblEstoque.TabIndex = 19;
-            this.lblEstoque.Text = "Estoque:";
+            this.lblEstoque.Text = "* Estoque:";
             // 
             // lblValorVenda
             // 
             this.lblValorVenda.AutoSize = true;
             this.lblValorVenda.Location = new System.Drawing.Point(239, 72);
             this.lblValorVenda.Name = "lblValorVenda";
-            this.lblValorVenda.Size = new System.Drawing.Size(68, 13);
+            this.lblValorVenda.Size = new System.Drawing.Size(75, 13);
             this.lblValorVenda.TabIndex = 18;
-            this.lblValorVenda.Text = "Valor Venda:";
+            this.lblValorVenda.Text = "* Valor Venda:";
             // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
             this.lblDescricao.Location = new System.Drawing.Point(8, 46);
             this.lblDescricao.Name = "lblDescricao";
-            this.lblDescricao.Size = new System.Drawing.Size(58, 13);
+            this.lblDescricao.Size = new System.Drawing.Size(65, 13);
             this.lblDescricao.TabIndex = 17;
-            this.lblDescricao.Text = "Descrição:";
+            this.lblDescricao.Text = "* Descrição:";
             // 
             // lblCodigo
             // 
@@ -200,6 +217,7 @@
             this.txtEstoqueMaximo.Name = "txtEstoqueMaximo";
             this.txtEstoqueMaximo.Size = new System.Drawing.Size(75, 20);
             this.txtEstoqueMaximo.TabIndex = 34;
+            this.txtEstoqueMaximo.TextChanged += new System.EventHandler(this.TxtEstoqueMaximo_TextChanged);
             this.txtEstoqueMaximo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEstoqueMaximo_KeyPress);
             // 
             // txtEstoqueMinimo
@@ -208,6 +226,7 @@
             this.txtEstoqueMinimo.Name = "txtEstoqueMinimo";
             this.txtEstoqueMinimo.Size = new System.Drawing.Size(75, 20);
             this.txtEstoqueMinimo.TabIndex = 33;
+            this.txtEstoqueMinimo.TextChanged += new System.EventHandler(this.TxtEstoqueMinimo_TextChanged);
             this.txtEstoqueMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEstoqueMinimo_KeyPress);
             // 
             // lblEstoqueMaximo
@@ -216,18 +235,18 @@
             this.lblEstoqueMaximo.Location = new System.Drawing.Point(239, 124);
             this.lblEstoqueMaximo.Name = "lblEstoqueMaximo";
             this.lblEstoqueMaximo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEstoqueMaximo.Size = new System.Drawing.Size(88, 13);
+            this.lblEstoqueMaximo.Size = new System.Drawing.Size(95, 13);
             this.lblEstoqueMaximo.TabIndex = 32;
-            this.lblEstoqueMaximo.Text = "Estoque Máximo:";
+            this.lblEstoqueMaximo.Text = "* Estoque Máximo:";
             // 
             // lblEstoqueMinimo
             // 
             this.lblEstoqueMinimo.AutoSize = true;
             this.lblEstoqueMinimo.Location = new System.Drawing.Point(239, 98);
             this.lblEstoqueMinimo.Name = "lblEstoqueMinimo";
-            this.lblEstoqueMinimo.Size = new System.Drawing.Size(87, 13);
+            this.lblEstoqueMinimo.Size = new System.Drawing.Size(94, 13);
             this.lblEstoqueMinimo.TabIndex = 31;
-            this.lblEstoqueMinimo.Text = "Estoque Minímo:";
+            this.lblEstoqueMinimo.Text = "* Estoque Minímo:";
             // 
             // txtEstoqueSeguranca
             // 
@@ -252,15 +271,55 @@
             this.txtValorCompra.Name = "txtValorCompra";
             this.txtValorCompra.Size = new System.Drawing.Size(75, 20);
             this.txtValorCompra.TabIndex = 38;
+            this.txtValorCompra.TextChanged += new System.EventHandler(this.TxtValorCompra_TextChanged);
             // 
             // lblValorCompra
             // 
             this.lblValorCompra.AutoSize = true;
             this.lblValorCompra.Location = new System.Drawing.Point(8, 72);
             this.lblValorCompra.Name = "lblValorCompra";
-            this.lblValorCompra.Size = new System.Drawing.Size(73, 13);
+            this.lblValorCompra.Size = new System.Drawing.Size(80, 13);
             this.lblValorCompra.TabIndex = 37;
-            this.lblValorCompra.Text = "Valor Compra:";
+            this.lblValorCompra.Text = "* Valor Compra:";
+            // 
+            // errValorCompra
+            // 
+            this.errValorCompra.ContainerControl = this;
+            this.errValorCompra.RightToLeft = true;
+            // 
+            // errDescricao
+            // 
+            this.errDescricao.ContainerControl = this;
+            this.errDescricao.RightToLeft = true;
+            // 
+            // errEstoque
+            // 
+            this.errEstoque.ContainerControl = this;
+            this.errEstoque.RightToLeft = true;
+            // 
+            // errValorVenda
+            // 
+            this.errValorVenda.ContainerControl = this;
+            this.errValorVenda.RightToLeft = true;
+            // 
+            // errEstoqueMinimo
+            // 
+            this.errEstoqueMinimo.ContainerControl = this;
+            this.errEstoqueMinimo.RightToLeft = true;
+            // 
+            // errEstoqueMaximo
+            // 
+            this.errEstoqueMaximo.ContainerControl = this;
+            this.errEstoqueMaximo.RightToLeft = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 480);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "* - Campos Obrigatórios.";
             // 
             // ProdutosForm
             // 
@@ -268,6 +327,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(452, 502);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtValorCompra);
             this.Controls.Add(this.lblValorCompra);
             this.Controls.Add(this.txtEstoqueSeguranca);
@@ -296,6 +356,12 @@
             this.Text = "Produtos";
             this.Load += new System.EventHandler(this.ProdutosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errValorCompra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errDescricao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEstoque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errValorVenda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMinimo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMaximo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,5 +392,12 @@
         private System.Windows.Forms.Label lblEstoqueSeguranca;
         private System.Windows.Forms.TextBox txtValorCompra;
         private System.Windows.Forms.Label lblValorCompra;
+        private System.Windows.Forms.ErrorProvider errValorCompra;
+        private System.Windows.Forms.ErrorProvider errDescricao;
+        private System.Windows.Forms.ErrorProvider errEstoque;
+        private System.Windows.Forms.ErrorProvider errValorVenda;
+        private System.Windows.Forms.ErrorProvider errEstoqueMinimo;
+        private System.Windows.Forms.ErrorProvider errEstoqueMaximo;
+        private System.Windows.Forms.Label label1;
     }
 }
