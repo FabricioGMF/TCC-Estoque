@@ -7,12 +7,14 @@ namespace BLL
 {
     public class ProdutosBLL
     {
+        //Chamada da lista de produtos em falta:
         public ArrayList ProdutosEmFalta()
         {
             ProdutosDAL obj = new ProdutosDAL();
             return obj.ProdutosEmFalta();
         }
 
+        //Regras de negócio na operação de inclusão de produto:
         public void Incluir(ProdutoInformation produto)
         {
             if (produto.Descricao.Trim().Length == 0)
@@ -69,7 +71,7 @@ namespace BLL
             {
                 throw new Exception("O estoque mínimo e/ou estoque máximo não podem ser iguais a 0");
             }
-            //---Alteração (teste):
+
             if (produto.Estoque > produto.EstoqueMaximo)
             {
                 throw new Exception("O estoque não pode estar acima do estoque máximo");
@@ -79,11 +81,12 @@ namespace BLL
             {
                 throw new Exception("O estoque não pode estar abaixo do estoque mínimo");
             }
-            //---
+
             ProdutosDAL obj = new ProdutosDAL();
             obj.Incluir(produto);
         }
 
+        //Regras de negócio na operação de alteração de produto:
         public void Alterar(ProdutoInformation produto)
         {
             if (produto.Descricao.Trim().Length == 0)
@@ -155,18 +158,21 @@ namespace BLL
             obj.Alterar(produto);
         }
 
+        //Operação de exclusão de produto:
         public void Excluir(int codigo)
         {
             ProdutosDAL obj = new ProdutosDAL();
             obj.Excluir(codigo);
         }
 
+        //Chamada da tabela de resultados, de acordo com o filtro:
         public DataTable Listagem(string filtro)
         {
             ProdutosDAL obj = new ProdutosDAL();
             return obj.Listagem(filtro);
         }
 
+        //Chamada da operação do uso do estoque de segurança:
         public int Uso_EstoqueSeguranca(ProdutoInformation produto)
         {
             ProdutosDAL obj = new ProdutosDAL();

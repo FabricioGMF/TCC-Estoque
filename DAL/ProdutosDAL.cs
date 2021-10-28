@@ -7,6 +7,7 @@ namespace Estoque
 {
     public class ProdutosDAL
     {
+        //Criação da lista de produtos em falta, caso o estoque do produto atinja o estoque mínimo e tenha um estoque de segurança igual a 0:
         public ArrayList ProdutosEmFalta()
         {
             SqlConnection cn = new SqlConnection(Dados.StringDeConexao);
@@ -36,6 +37,7 @@ namespace Estoque
             return lista;
         }
 
+        //Operação do uso do estoque de segurança, caso o estoque seja igual ao estoque mínimo:
         public int Uso_EstoqueSeguranca(ProdutoInformation produto)
         {
             if (produto.Estoque == produto.EstoqueMinimo)
@@ -49,6 +51,7 @@ namespace Estoque
             return (int)produto.Estoque;
         }
 
+        //Operação de Inclusão:
         public void Incluir(ProdutoInformation produto)
         {
             SqlConnection cn = new SqlConnection();
@@ -85,6 +88,7 @@ namespace Estoque
             }
         }
 
+        //Operação de Alteração:
         public void Alterar(ProdutoInformation produto)
         {
             SqlConnection cn = new SqlConnection();
@@ -108,18 +112,8 @@ namespace Estoque
                 cmd.Parameters.AddWithValue("@estoque_seguranca", produto.EstoqueSeguranca);
                 cmd.Parameters.AddWithValue("@Codigo", produto.Codigo);
 
-                // cmd.Parameters.Add("@valorEstoque", SqlDbType.Int);
-                // cmd.Parameters["@valorEstoque"].Direction = ParameterDirection.Output;
-
                 cn.Open();
                 cmd.ExecuteNonQuery();
-
-               // decimal valorEstoque = Convert.ToDecimal(cmd.Parameters["@valorestoque"]);
-
-                //if(valorEstoque < 500)
-                //{
-                //    throw new Exception("Atenção! Valor baixo no estoque.");
-                //}
             }
             catch (SqlException ex)
             {
@@ -135,6 +129,7 @@ namespace Estoque
             }
         }
 
+        //Operação de Exclusão:
         public void Excluir(int codigo)
         {
             SqlConnection cn = new SqlConnection();
@@ -176,6 +171,7 @@ namespace Estoque
             }
         }
 
+        //Operação de listagem de um produto, de acordo com o filtro:
         public DataTable Listagem(string filtro)
         {
             SqlConnection cn = new SqlConnection();

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Estoque
 {
+    //Declaração dos atributos (campos) existentes na entidade produto:
     public class ProdutoInformation
     {
         private int _codigo;

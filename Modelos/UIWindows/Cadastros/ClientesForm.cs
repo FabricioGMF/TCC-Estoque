@@ -175,12 +175,16 @@ namespace UIWindows
             {
                 try
                 {
-                    int codigo = Convert.ToInt32(txtCodigo.Text);
+                    if (MessageBox.Show("Tem certeza que deseja excluir o cliente selecionado?", "Confirmação de exclusão",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        int codigo = Convert.ToInt32(txtCodigo.Text);
 
-                    ClientesBLL obj = new ClientesBLL();
-                    obj.Excluir(codigo);
-                    MessageBox.Show("O cliente foi excluido com sucesso!");
-                    AtualizaGrid();
+                        ClientesBLL obj = new ClientesBLL();
+                        obj.Excluir(codigo);
+                        MessageBox.Show("O cliente foi excluido com sucesso!");
+                        AtualizaGrid();
+                    }
                 }
                 catch (Exception ex)
                 {

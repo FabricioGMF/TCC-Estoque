@@ -7,11 +7,13 @@ namespace UIWindows
 {
     public partial class ProdutosForm : Form
     {
+        //Inicialização do formulário de produtos:
         public ProdutosForm()
         {
             InitializeComponent();
         }
 
+        //Atualiza tabela de produtos
         public void AtualizaGrid()
         { //Comunicação com a camada BLL
             ProdutosBLL obj = new ProdutosBLL();
@@ -56,12 +58,14 @@ namespace UIWindows
             }
         }
 
+        //Carrega o formulário de produtos:
         private void ProdutosForm_Load(object sender, EventArgs e)
         {            
             AtualizaGrid();
             txtDescricao.Focus();
         }
 
+        //Limpa campos do formulário de produtos:
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
             txtCodigo.Text = "";
@@ -74,6 +78,7 @@ namespace UIWindows
             txtEstoqueSeguranca.Text = "";
         }
 
+        //Inclusão de produto:
         private void BtnIncluir_Click(object sender, EventArgs e)
         {
             try
@@ -105,6 +110,7 @@ namespace UIWindows
             AtualizaGrid();
         }
 
+        //Alteração de produto:
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             if (txtCodigo.Text.Length == 0)
@@ -142,6 +148,7 @@ namespace UIWindows
             }
         }
 
+        //Exclusão de produto:
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
             if (txtCodigo.Text.Length == 0)
@@ -152,12 +159,16 @@ namespace UIWindows
             {
                 try
                 {
-                    int codigo = Convert.ToInt32(txtCodigo.Text);
+                    if (MessageBox.Show("Tem certeza que deseja excluir o produto selecionado?", "Confirmação de exclusão", 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        int codigo = Convert.ToInt32(txtCodigo.Text);
 
-                    ProdutosBLL obj = new ProdutosBLL();
-                    obj.Excluir(codigo);
-                    MessageBox.Show("O produto foi excluido com sucesso!");
-                    AtualizaGrid();
+                        ProdutosBLL obj = new ProdutosBLL();
+                        obj.Excluir(codigo);
+                        MessageBox.Show("O produto foi excluido com sucesso!");
+                        AtualizaGrid();
+                    }                   
                 }
                 catch (Exception ex)
                 {
@@ -166,11 +177,13 @@ namespace UIWindows
             }
         }
 
+        //Atualiza tabela de produtos de acordo com o filtro:
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
             AtualizaGrid();
         }
 
+        //Seleção de registro da lista de produtos:
         private void DgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -184,6 +197,7 @@ namespace UIWindows
             txtEstoqueSeguranca.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
         }
 
+        //Aceitar somente números no campo de Estoque:
         private void TxtEstoque_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar))
@@ -192,6 +206,7 @@ namespace UIWindows
             }
         }
 
+        //Aceitar somente números no campo de Estoque Mínimo:
         private void TxtEstoqueMinimo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar))
@@ -200,6 +215,7 @@ namespace UIWindows
             }
         }
 
+        //Aceitar somente números no campo de Estoque Máximo:
         private void TxtEstoqueMaximo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar))
