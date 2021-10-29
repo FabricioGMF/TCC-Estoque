@@ -36,21 +36,16 @@
             this.btnIncluir = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.txtEstoque = new System.Windows.Forms.TextBox();
-            this.txtValorVenda = new System.Windows.Forms.TextBox();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblEstoque = new System.Windows.Forms.Label();
             this.lblValorVenda = new System.Windows.Forms.Label();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
-            this.txtEstoqueMaximo = new System.Windows.Forms.TextBox();
-            this.txtEstoqueMinimo = new System.Windows.Forms.TextBox();
             this.lblEstoqueMaximo = new System.Windows.Forms.Label();
             this.lblEstoqueMinimo = new System.Windows.Forms.Label();
             this.txtEstoqueSeguranca = new System.Windows.Forms.TextBox();
             this.lblEstoqueSeguranca = new System.Windows.Forms.Label();
-            this.txtValorCompra = new System.Windows.Forms.TextBox();
             this.lblValorCompra = new System.Windows.Forms.Label();
             this.errValorCompra = new System.Windows.Forms.ErrorProvider(this.components);
             this.errDescricao = new System.Windows.Forms.ErrorProvider(this.components);
@@ -59,6 +54,11 @@
             this.errEstoqueMinimo = new System.Windows.Forms.ErrorProvider(this.components);
             this.errEstoqueMaximo = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.numValorCompra = new System.Windows.Forms.NumericUpDown();
+            this.numEstoque = new System.Windows.Forms.NumericUpDown();
+            this.numValorVenda = new System.Windows.Forms.NumericUpDown();
+            this.numEstoqueMinimo = new System.Windows.Forms.NumericUpDown();
+            this.numEstoqueMaximo = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errValorCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errDescricao)).BeginInit();
@@ -66,6 +66,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.errValorVenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMinimo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMaximo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numValorCompra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numValorVenda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEstoqueMinimo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEstoqueMaximo)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvProdutos
@@ -142,30 +147,12 @@
             this.txtFiltro.Size = new System.Drawing.Size(347, 20);
             this.txtFiltro.TabIndex = 24;
             // 
-            // txtEstoque
-            // 
-            this.txtEstoque.Location = new System.Drawing.Point(133, 95);
-            this.txtEstoque.Name = "txtEstoque";
-            this.txtEstoque.Size = new System.Drawing.Size(75, 20);
-            this.txtEstoque.TabIndex = 23;
-            this.txtEstoque.TextChanged += new System.EventHandler(this.TxtEstoque_TextChanged);
-            this.txtEstoque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEstoque_KeyPress);
-            // 
-            // txtValorVenda
-            // 
-            this.txtValorVenda.Location = new System.Drawing.Point(364, 69);
-            this.txtValorVenda.Name = "txtValorVenda";
-            this.txtValorVenda.Size = new System.Drawing.Size(75, 20);
-            this.txtValorVenda.TabIndex = 22;
-            this.txtValorVenda.TextChanged += new System.EventHandler(this.TxtValorVenda_TextChanged);
-            // 
             // txtDescricao
             // 
             this.txtDescricao.Location = new System.Drawing.Point(133, 43);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(306, 20);
             this.txtDescricao.TabIndex = 21;
-            this.txtDescricao.TextChanged += new System.EventHandler(this.TxtDescricao_TextChanged);
             // 
             // txtCodigo
             // 
@@ -211,24 +198,6 @@
             this.lblCodigo.TabIndex = 16;
             this.lblCodigo.Text = "Código:";
             // 
-            // txtEstoqueMaximo
-            // 
-            this.txtEstoqueMaximo.Location = new System.Drawing.Point(364, 121);
-            this.txtEstoqueMaximo.Name = "txtEstoqueMaximo";
-            this.txtEstoqueMaximo.Size = new System.Drawing.Size(75, 20);
-            this.txtEstoqueMaximo.TabIndex = 34;
-            this.txtEstoqueMaximo.TextChanged += new System.EventHandler(this.TxtEstoqueMaximo_TextChanged);
-            this.txtEstoqueMaximo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEstoqueMaximo_KeyPress);
-            // 
-            // txtEstoqueMinimo
-            // 
-            this.txtEstoqueMinimo.Location = new System.Drawing.Point(364, 95);
-            this.txtEstoqueMinimo.Name = "txtEstoqueMinimo";
-            this.txtEstoqueMinimo.Size = new System.Drawing.Size(75, 20);
-            this.txtEstoqueMinimo.TabIndex = 33;
-            this.txtEstoqueMinimo.TextChanged += new System.EventHandler(this.TxtEstoqueMinimo_TextChanged);
-            this.txtEstoqueMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEstoqueMinimo_KeyPress);
-            // 
             // lblEstoqueMaximo
             // 
             this.lblEstoqueMaximo.AutoSize = true;
@@ -264,14 +233,6 @@
             this.lblEstoqueSeguranca.Size = new System.Drawing.Size(119, 13);
             this.lblEstoqueSeguranca.TabIndex = 35;
             this.lblEstoqueSeguranca.Text = "Estoque de Segurança:";
-            // 
-            // txtValorCompra
-            // 
-            this.txtValorCompra.Location = new System.Drawing.Point(133, 69);
-            this.txtValorCompra.Name = "txtValorCompra";
-            this.txtValorCompra.Size = new System.Drawing.Size(75, 20);
-            this.txtValorCompra.TabIndex = 38;
-            this.txtValorCompra.TextChanged += new System.EventHandler(this.TxtValorCompra_TextChanged);
             // 
             // lblValorCompra
             // 
@@ -321,19 +282,93 @@
             this.label1.TabIndex = 39;
             this.label1.Text = "* - Campos Obrigatórios.";
             // 
+            // numValorCompra
+            // 
+            this.numValorCompra.DecimalPlaces = 2;
+            this.numValorCompra.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numValorCompra.Location = new System.Drawing.Point(133, 69);
+            this.numValorCompra.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numValorCompra.Name = "numValorCompra";
+            this.numValorCompra.Size = new System.Drawing.Size(75, 20);
+            this.numValorCompra.TabIndex = 40;
+            // 
+            // numEstoque
+            // 
+            this.numEstoque.Location = new System.Drawing.Point(133, 95);
+            this.numEstoque.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numEstoque.Name = "numEstoque";
+            this.numEstoque.Size = new System.Drawing.Size(75, 20);
+            this.numEstoque.TabIndex = 41;
+            // 
+            // numValorVenda
+            // 
+            this.numValorVenda.DecimalPlaces = 2;
+            this.numValorVenda.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numValorVenda.Location = new System.Drawing.Point(364, 69);
+            this.numValorVenda.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numValorVenda.Name = "numValorVenda";
+            this.numValorVenda.Size = new System.Drawing.Size(75, 20);
+            this.numValorVenda.TabIndex = 42;
+            // 
+            // numEstoqueMinimo
+            // 
+            this.numEstoqueMinimo.Location = new System.Drawing.Point(364, 95);
+            this.numEstoqueMinimo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numEstoqueMinimo.Name = "numEstoqueMinimo";
+            this.numEstoqueMinimo.Size = new System.Drawing.Size(75, 20);
+            this.numEstoqueMinimo.TabIndex = 43;
+            // 
+            // numEstoqueMaximo
+            // 
+            this.numEstoqueMaximo.Location = new System.Drawing.Point(364, 121);
+            this.numEstoqueMaximo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numEstoqueMaximo.Name = "numEstoqueMaximo";
+            this.numEstoqueMaximo.Size = new System.Drawing.Size(75, 20);
+            this.numEstoqueMaximo.TabIndex = 44;
+            // 
             // ProdutosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(452, 502);
+            this.Controls.Add(this.numEstoqueMaximo);
+            this.Controls.Add(this.numEstoqueMinimo);
+            this.Controls.Add(this.numValorVenda);
+            this.Controls.Add(this.numEstoque);
+            this.Controls.Add(this.numValorCompra);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtValorCompra);
             this.Controls.Add(this.lblValorCompra);
             this.Controls.Add(this.txtEstoqueSeguranca);
             this.Controls.Add(this.lblEstoqueSeguranca);
-            this.Controls.Add(this.txtEstoqueMaximo);
-            this.Controls.Add(this.txtEstoqueMinimo);
             this.Controls.Add(this.lblEstoqueMaximo);
             this.Controls.Add(this.lblEstoqueMinimo);
             this.Controls.Add(this.dgvProdutos);
@@ -343,8 +378,6 @@
             this.Controls.Add(this.btnIncluir);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.txtFiltro);
-            this.Controls.Add(this.txtEstoque);
-            this.Controls.Add(this.txtValorVenda);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblEstoque);
@@ -362,6 +395,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.errValorVenda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMinimo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEstoqueMaximo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numValorCompra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numValorVenda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEstoqueMinimo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEstoqueMaximo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,21 +414,16 @@
         private System.Windows.Forms.Button btnIncluir;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.TextBox txtFiltro;
-        private System.Windows.Forms.TextBox txtEstoque;
-        private System.Windows.Forms.TextBox txtValorVenda;
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label lblEstoque;
         private System.Windows.Forms.Label lblValorVenda;
         private System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.Label lblCodigo;
-        private System.Windows.Forms.TextBox txtEstoqueMaximo;
-        private System.Windows.Forms.TextBox txtEstoqueMinimo;
         private System.Windows.Forms.Label lblEstoqueMaximo;
         private System.Windows.Forms.Label lblEstoqueMinimo;
         private System.Windows.Forms.TextBox txtEstoqueSeguranca;
         private System.Windows.Forms.Label lblEstoqueSeguranca;
-        private System.Windows.Forms.TextBox txtValorCompra;
         private System.Windows.Forms.Label lblValorCompra;
         private System.Windows.Forms.ErrorProvider errValorCompra;
         private System.Windows.Forms.ErrorProvider errDescricao;
@@ -399,5 +432,10 @@
         private System.Windows.Forms.ErrorProvider errEstoqueMinimo;
         private System.Windows.Forms.ErrorProvider errEstoqueMaximo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numValorCompra;
+        private System.Windows.Forms.NumericUpDown numEstoqueMaximo;
+        private System.Windows.Forms.NumericUpDown numEstoqueMinimo;
+        private System.Windows.Forms.NumericUpDown numValorVenda;
+        private System.Windows.Forms.NumericUpDown numEstoque;
     }
 }

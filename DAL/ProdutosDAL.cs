@@ -59,20 +59,71 @@ namespace Estoque
             try
             {
                 cn.ConnectionString = Dados.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = "insert into produtos (descricao, valorcompra, valorvenda, estoque, estoque_minimo, estoque_maximo, estoque_seguranca) values (@descricao, @valorcompra, @valorvenda, @estoque, @estoque_minimo, @estoque_maximo, @estoque_seguranca); select @@IDENTITY";
+                //command
+                SqlCommand cmd = new SqlCommand
+                {
+                    Connection = cn,
+                    //nome da stored procedure
+                    CommandText = "insere_produto",
+                    //parametros da stored procedure
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(pcodigo);
 
-                cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
-                cmd.Parameters.AddWithValue("@valorcompra", produto.ValorCompra);
-                cmd.Parameters.AddWithValue("@valorvenda", produto.ValorVenda);
-                cmd.Parameters.AddWithValue("@estoque", produto.Estoque);
-                cmd.Parameters.AddWithValue("@estoque_minimo", produto.EstoqueMinimo);
-                cmd.Parameters.AddWithValue("@estoque_maximo", produto.EstoqueMaximo);
-                cmd.Parameters.AddWithValue("@estoque_seguranca", produto.EstoqueSeguranca);
-                
+                SqlParameter pdescricao = new SqlParameter("@descricao", SqlDbType.NVarChar, 100)
+                {
+                    Value = produto.Descricao
+                };
+                cmd.Parameters.Add(pdescricao);
+
+                SqlParameter pvalorcompra = new SqlParameter("@valorcompra", SqlDbType.Decimal)
+                {
+                    Precision = 10,
+                    Scale = 2,
+                    Value = produto.ValorCompra
+                };
+                cmd.Parameters.Add(pvalorcompra);
+
+                SqlParameter pvalorvenda = new SqlParameter("@valorvenda", SqlDbType.Decimal)
+                {
+                    Precision = 10,
+                    Scale = 2,
+                    Value = produto.ValorVenda
+                };
+                cmd.Parameters.Add(pvalorvenda);
+
+                SqlParameter pestoque = new SqlParameter("@estoque", SqlDbType.Int)
+                {
+                    Value = produto.Estoque
+                };
+                cmd.Parameters.Add(pestoque);
+
+                SqlParameter pestoqueminimo = new SqlParameter("@estoque_minimo", SqlDbType.Int)
+                {
+                    Value = produto.EstoqueMinimo
+                };
+                cmd.Parameters.Add(pestoqueminimo);
+
+                SqlParameter pestoquemaximo = new SqlParameter("@estoque_maximo", SqlDbType.Int)
+                {
+                    Value = produto.EstoqueMaximo
+                };
+                cmd.Parameters.Add(pestoquemaximo);
+
+                SqlParameter pestoqueseguranca = new SqlParameter("@estoque_seguranca", SqlDbType.Int)
+                {
+                    Value = produto.EstoqueSeguranca
+                };
+                cmd.Parameters.Add(pestoqueseguranca);
+
                 cn.Open();
-                produto.Codigo = Convert.ToInt32(cmd.ExecuteScalar());
+                cmd.ExecuteNonQuery();
+
+                produto.Codigo = (Int32)cmd.Parameters["@codigo"].Value;
             }
             catch (SqlException ex)
             {
@@ -137,24 +188,27 @@ namespace Estoque
             try
             {
                 cn.ConnectionString = Dados.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
+                SqlCommand cmd = new SqlCommand
+                {
+                    Connection = cn,
 
-                cmd.CommandText = "Delete FROM produtos WHERE Codigo = @Codigo";
-                cmd.CommandType = CommandType.Text;
-
-                SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int);
-
-                pcodigo.Value = codigo;
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = "exclui_produto"
+                };
+                //parametros da stored procedure
+                SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int)
+                {
+                    //pcodigo.Direction = ParameterDirection.Output;
+                    Value = codigo
+                };
                 cmd.Parameters.Add(pcodigo);
 
                 cn.Open();
-                
+
                 int resultado = cmd.ExecuteNonQuery();
-                               
                 if (resultado != 1)
                 {
-                    throw new Exception("Atenção! Valor baixo no estoque.");
+                    throw new Exception("Não foi possível excluir o produto " + codigo);
                 }
             }
             catch (SqlException ex)

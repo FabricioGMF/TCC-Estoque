@@ -9,11 +9,6 @@ namespace BLL
     {
         public void Incluir(ClienteInformation cliente)
         {
-            //if (cliente.Nome.Trim().Length == 0) //O nome do cliente é obrigatório
-            //{
-            //    throw new Exception("O nome/razão social do cliente é obrigatório");
-            //}
-
             cliente.Email = cliente.Email.ToLower(); //Email é sempre em letras minúsculas
 
             ClientesDAL obj = new ClientesDAL(); //Se tudo está OK, chama a rotina de inserção
@@ -22,11 +17,6 @@ namespace BLL
 
         public void Alterar(ClienteInformation cliente)
         {
-            //if (cliente.Nome.Trim().Length == 0)
-            //{
-            //    throw new Exception("O nome/razão social do cliente é obrigatório");
-            //}
-
             cliente.Email = cliente.Email.ToLower();
 
             ClientesDAL obj = new ClientesDAL();

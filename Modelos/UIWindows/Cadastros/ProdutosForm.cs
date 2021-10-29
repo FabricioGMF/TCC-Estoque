@@ -13,6 +13,13 @@ namespace UIWindows
             InitializeComponent();
         }
 
+        //Carrega o formulário de produtos:
+        private void ProdutosForm_Load(object sender, EventArgs e)
+        {
+            AtualizaGrid();
+            txtDescricao.Focus();
+        }
+
         //Atualiza tabela de produtos
         public void AtualizaGrid()
         { //Comunicação com a camada BLL
@@ -25,11 +32,11 @@ namespace UIWindows
                 {
                     txtCodigo.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
                     txtDescricao.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtValorCompra.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtValorVenda.Text = dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoque.Text = dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoqueMinimo.Text = dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value.ToString();
-                    txtEstoqueMaximo.Text = dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value.ToString();
+                    numValorCompra.Value = (decimal)dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value;
+                    numValorVenda.Value = (decimal)dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value;
+                    numEstoque.Value = (int)dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value;
+                    numEstoqueMinimo.Value = (int)dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value;
+                    numEstoqueMaximo.Value = (int)dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value;
                     txtEstoqueSeguranca.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
                 }
 
@@ -37,11 +44,11 @@ namespace UIWindows
                 {
                     txtCodigo.Text = "";
                     txtDescricao.Text = "";
-                    txtValorCompra.Text = "";
-                    txtValorVenda.Text = "";
-                    txtEstoque.Text = "";
-                    txtEstoqueMinimo.Text = "";
-                    txtEstoqueMaximo.Text = "";
+                    numValorCompra.Value = 0;
+                    numValorVenda.Value = 0;
+                    numEstoque.Value = 0;
+                    numEstoqueMinimo.Value = 0;
+                    numEstoqueMaximo.Value = 0;
                     txtEstoqueSeguranca.Text = "";
                 }
             }
@@ -49,32 +56,25 @@ namespace UIWindows
             {
                 txtCodigo.Text = "";
                 txtDescricao.Text = "";
-                txtValorCompra.Text = "";
-                txtValorVenda.Text = "";
-                txtEstoque.Text = "";
-                txtEstoqueMinimo.Text = "";
-                txtEstoqueMaximo.Text = "";
+                numValorCompra.Value = 0;
+                numValorVenda.Value = 0;
+                numEstoque.Value = 0;
+                numEstoqueMinimo.Value = 0;
+                numEstoqueMaximo.Value = 0;
                 txtEstoqueSeguranca.Text = "";
             }
-        }
-
-        //Carrega o formulário de produtos:
-        private void ProdutosForm_Load(object sender, EventArgs e)
-        {            
-            AtualizaGrid();
-            txtDescricao.Focus();
-        }
+        }       
 
         //Limpa campos do formulário de produtos:
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
             txtCodigo.Text = "";
             txtDescricao.Text = "";
-            txtValorCompra.Text = "";
-            txtValorVenda.Text = "";
-            txtEstoque.Text = "";
-            txtEstoqueMinimo.Text = "";
-            txtEstoqueMaximo.Text = "";
+            numValorCompra.Value = 0;
+            numValorVenda.Value = 0;
+            numEstoque.Value = 0;
+            numEstoqueMinimo.Value = 0;
+            numEstoqueMaximo.Value = 0;
             txtEstoqueSeguranca.Text = "";
         }
 
@@ -85,11 +85,11 @@ namespace UIWindows
             {
                 ProdutoInformation produto = new ProdutoInformation();
                 produto.Descricao = txtDescricao.Text;
-                produto.ValorCompra = Convert.ToDecimal(txtValorCompra.Text);
-                produto.ValorVenda = Convert.ToDecimal(txtValorVenda.Text);
-                produto.Estoque = Convert.ToInt32(txtEstoque.Text);
-                produto.EstoqueMinimo = Convert.ToInt32(txtEstoqueMinimo.Text);
-                produto.EstoqueMaximo = Convert.ToInt32(txtEstoqueMaximo.Text);
+                produto.ValorCompra = Convert.ToDecimal(numValorCompra.Value);
+                produto.ValorVenda = Convert.ToDecimal(numValorVenda.Value);
+                produto.Estoque = Convert.ToInt32(numEstoque.Value);
+                produto.EstoqueMinimo = Convert.ToInt32(numEstoqueMinimo.Value);
+                produto.EstoqueMaximo = Convert.ToInt32(numEstoqueMaximo.Value);
 
                 if (produto.EstoqueMaximo >= 10)
                 {
@@ -97,11 +97,19 @@ namespace UIWindows
                     produto.EstoqueSeguranca = Convert.ToInt32(txtEstoqueSeguranca.Text);
                 }
 
+                Valida_Campos_Produto();
+
                 ProdutosBLL obj = new ProdutosBLL();
-                obj.Incluir(produto);
-                MessageBox.Show("O produto foi incluido com sucesso!");
-                txtCodigo.Text = Convert.ToString(produto.Codigo);
-                AtualizaGrid();
+
+                if (txtDescricao.Text.Length != 0 && numValorCompra.Value != 0 &&
+                numEstoque.Value != 0 && numValorVenda.Value != 0 &&
+                numEstoqueMinimo.Value != 0 && numEstoqueMaximo.Value != 0)
+                {
+                    obj.Incluir(produto);
+                    MessageBox.Show("O produto foi incluido com sucesso!");
+                    txtCodigo.Text = Convert.ToString(produto.Codigo);
+                    AtualizaGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -122,13 +130,13 @@ namespace UIWindows
                 try
                 {
                     ProdutoInformation produto = new ProdutoInformation();
-                    produto.Codigo = int.Parse(txtCodigo.Text);
+                    produto.Codigo = Convert.ToInt32(txtCodigo.Text);
                     produto.Descricao = txtDescricao.Text;
-                    produto.ValorCompra = Convert.ToDecimal(txtValorCompra.Text);
-                    produto.ValorVenda = Convert.ToDecimal(txtValorVenda.Text);
-                    produto.Estoque = Convert.ToInt32(txtEstoque.Text);
-                    produto.EstoqueMinimo = Convert.ToInt32(txtEstoqueMinimo.Text);
-                    produto.EstoqueMaximo = Convert.ToInt32(txtEstoqueMaximo.Text);
+                    produto.ValorCompra = Convert.ToDecimal(numValorCompra.Value);
+                    produto.ValorVenda = Convert.ToDecimal(numValorVenda.Value);
+                    produto.Estoque = Convert.ToInt32(numEstoque.Value);
+                    produto.EstoqueMinimo = Convert.ToInt32(numEstoqueMinimo.Value);
+                    produto.EstoqueMaximo = Convert.ToInt32(numEstoqueMaximo.Value);
 
                     if (produto.EstoqueMaximo >= 10)
                     {
@@ -136,9 +144,18 @@ namespace UIWindows
                         produto.EstoqueSeguranca = Convert.ToInt32(txtEstoqueSeguranca.Text);
                     }
 
+                    Valida_Campos_Produto();
+
                     ProdutosBLL obj = new ProdutosBLL();
-                    obj.Alterar(produto);
-                    MessageBox.Show("O produto foi alterado com sucesso!");
+
+                    if (txtDescricao.Text.Length != 0 && numValorCompra.Value != 0 &&
+                    numEstoque.Value != 0 && numValorVenda.Value != 0 &&
+                    numEstoqueMinimo.Value != 0 && numEstoqueMaximo.Value != 0)
+                    {
+                        obj.Alterar(produto);
+                        MessageBox.Show("O produto foi alterado com sucesso!");
+                        AtualizaGrid();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -186,47 +203,20 @@ namespace UIWindows
         //Seleção de registro da lista de produtos:
         private void DgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
             txtCodigo.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
             txtDescricao.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtValorCompra.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtValorVenda.Text = dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoque.Text = dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoqueMinimo.Text = dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value.ToString();
-            txtEstoqueMaximo.Text = dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value.ToString();
+            numValorCompra.Value = (decimal)dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value;
+            numValorVenda.Value = (decimal)dgvProdutos[3, dgvProdutos.CurrentRow.Index].Value;
+            numEstoque.Value = (int)dgvProdutos[4, dgvProdutos.CurrentRow.Index].Value;
+            numEstoqueMinimo.Value = (int)dgvProdutos[5, dgvProdutos.CurrentRow.Index].Value;
+            numEstoqueMaximo.Value = (int)dgvProdutos[6, dgvProdutos.CurrentRow.Index].Value;
             txtEstoqueSeguranca.Text = dgvProdutos[7, dgvProdutos.CurrentRow.Index].Value.ToString();
         }
 
-        //Aceitar somente números no campo de Estoque:
-        private void TxtEstoque_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //Aceitar somente números no campo de Estoque Mínimo:
-        private void TxtEstoqueMinimo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //Aceitar somente números no campo de Estoque Máximo:
-        private void TxtEstoqueMaximo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         //Validação de campos:
-        private void TxtDescricao_TextChanged(object sender, EventArgs e)
+        public void Valida_Campos_Produto()
         {
+            //- Descrição:
             if (txtDescricao.Text == "")
             {
                 errDescricao.SetError(txtDescricao, "Digite a descrição");
@@ -235,61 +225,51 @@ namespace UIWindows
             {
                 errDescricao.Clear();
             }
-        }
 
-        private void TxtValorCompra_TextChanged(object sender, EventArgs e)
-        {
-            if (txtValorCompra.Text == "")
+            //- Valor Compra:
+            if (numValorCompra.Value == 0)
             {
-                errValorCompra.SetError(txtValorCompra, "Digite o valor de compra");
+                errValorCompra.SetError(numValorCompra, "Insira o valor de compra");
             }
             else
             {
                 errValorCompra.Clear();
             }
-        }
 
-        private void TxtEstoque_TextChanged(object sender, EventArgs e)
-        {
-            if (txtEstoque.Text == "")
+            //- Estoque:
+            if (numEstoque.Value == 0)
             {
-                errEstoque.SetError(txtEstoque, "Digite o estoque");
+                errEstoque.SetError(numEstoque, "Insira o estoque");
             }
             else
             {
                 errEstoque.Clear();
             }
-        }
 
-        private void TxtValorVenda_TextChanged(object sender, EventArgs e)
-        {
-            if (txtValorVenda.Text == "")
+            //- Valor Venda:
+            if (numValorVenda.Value == 0)
             {
-                errValorVenda.SetError(txtValorVenda, "Digite o valor de venda");
+                errValorVenda.SetError(numValorVenda, "Insira o valor de venda");
             }
             else
             {
                 errValorVenda.Clear();
             }
-        }
 
-        private void TxtEstoqueMinimo_TextChanged(object sender, EventArgs e)
-        {
-            if (txtEstoqueMinimo.Text == "")
+            //- Estoque Mínimo:
+            if (numEstoqueMinimo.Value == 0)
             {
-                errEstoqueMinimo.SetError(txtEstoqueMinimo, "Digite o estoque mínimo");
+                errEstoqueMinimo.SetError(numEstoqueMinimo, "Insira o estoque mínimo");
             }
             else
             {
                 errEstoqueMinimo.Clear();
             }
-        }
 
-        private void TxtEstoqueMaximo_TextChanged(object sender, EventArgs e)
-        {
-            if (txtEstoqueMaximo.Text == "")
+            //- Estoque Máximo:
+            if (numEstoqueMaximo.Value == 0)
             {
-                errEstoqueMaximo.SetError(txtEstoqueMaximo, "Digite o estoque máximo");
+                errEstoqueMaximo.SetError(numEstoqueMaximo, "Insira o estoque máximo");
             }
             else
             {
