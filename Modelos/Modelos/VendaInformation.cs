@@ -13,21 +13,7 @@ namespace Estoque
         {
             get { return _codigo; }
             set { _codigo = value; }
-        }
-
-        private int _codigoCliente;
-        public int CodigoCliente
-        {
-            get { return _codigoCliente; }
-            set { _codigoCliente = value; }
-        }
-
-        private int _codigoProduto;
-        public int CodigoProduto
-        {
-            get { return _codigoProduto; }
-            set { _codigoProduto = value; }
-        }
+        }     
 
         private DateTime _dataVenda;
         public DateTime DataVenda
@@ -43,25 +29,11 @@ namespace Estoque
             set { _faturado = value; }
         }
 
-        private string _nomeCliente;
-        public string NomeCliente
+        private int _codigoCliente;
+        public int CodigoCliente
         {
-            get { return _nomeCliente; }
-            set { _nomeCliente = value; }
-        }
-
-        private int _quantidade;
-        public int Quantidade
-        {
-            get { return _quantidade; }
-            set { _quantidade = value; }
-        }
-
-        private decimal _precoUnitario;
-        public decimal PrecoUnitario
-        {
-            get { return _precoUnitario; }
-            set { _precoUnitario = value; }
+            get { return _codigoCliente; }
+            set { _codigoCliente = value; }
         }
     }
 }

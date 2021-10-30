@@ -111,14 +111,14 @@
             // tsmiCadClientes
             // 
             this.tsmiCadClientes.Name = "tsmiCadClientes";
-            this.tsmiCadClientes.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCadClientes.Size = new System.Drawing.Size(122, 22);
             this.tsmiCadClientes.Text = "Clientes";
             this.tsmiCadClientes.Click += new System.EventHandler(this.TsmiCadClientes_Click);
             // 
             // tsmiCadProdutos
             // 
             this.tsmiCadProdutos.Name = "tsmiCadProdutos";
-            this.tsmiCadProdutos.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCadProdutos.Size = new System.Drawing.Size(122, 22);
             this.tsmiCadProdutos.Text = "Produtos";
             this.tsmiCadProdutos.Click += new System.EventHandler(this.TsmiCadProdutos_Click);
             // 
@@ -133,7 +133,7 @@
             // tsmiMovVendas
             // 
             this.tsmiMovVendas.Name = "tsmiMovVendas";
-            this.tsmiMovVendas.Size = new System.Drawing.Size(180, 22);
+            this.tsmiMovVendas.Size = new System.Drawing.Size(111, 22);
             this.tsmiMovVendas.Text = "Vendas";
             this.tsmiMovVendas.Click += new System.EventHandler(this.TsmiMovVendas_Click);
             // 
@@ -152,33 +152,33 @@
             // tsmiRelClientes
             // 
             this.tsmiRelClientes.Name = "tsmiRelClientes";
-            this.tsmiRelClientes.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRelClientes.Size = new System.Drawing.Size(170, 22);
             this.tsmiRelClientes.Text = "Clientes";
             this.tsmiRelClientes.Click += new System.EventHandler(this.TsmiRelClientes_Click);
             // 
             // tsmiRelProdutos
             // 
             this.tsmiRelProdutos.Name = "tsmiRelProdutos";
-            this.tsmiRelProdutos.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRelProdutos.Size = new System.Drawing.Size(170, 22);
             this.tsmiRelProdutos.Text = "Produtos";
             this.tsmiRelProdutos.Click += new System.EventHandler(this.TsmiRelProdutos_Click);
             // 
             // tsmiRelVendas
             // 
             this.tsmiRelVendas.Name = "tsmiRelVendas";
-            this.tsmiRelVendas.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRelVendas.Size = new System.Drawing.Size(170, 22);
             this.tsmiRelVendas.Text = "Vendas";
             this.tsmiRelVendas.Click += new System.EventHandler(this.TsmiRelVendas_Click);
             // 
             // produtosEmFaltaToolStripMenuItem1
             // 
             this.produtosEmFaltaToolStripMenuItem1.Name = "produtosEmFaltaToolStripMenuItem1";
-            this.produtosEmFaltaToolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.produtosEmFaltaToolStripMenuItem1.Size = new System.Drawing.Size(167, 6);
             // 
             // tsmiRelProdEmFalta
             // 
             this.tsmiRelProdEmFalta.Name = "tsmiRelProdEmFalta";
-            this.tsmiRelProdEmFalta.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRelProdEmFalta.Size = new System.Drawing.Size(170, 22);
             this.tsmiRelProdEmFalta.Text = "Produtos em Falta";
             this.tsmiRelProdEmFalta.Click += new System.EventHandler(this.TsmiRelProdEmFalta_Click);
             // 
@@ -195,19 +195,19 @@
             // tsmiAjuExibirAjuda
             // 
             this.tsmiAjuExibirAjuda.Name = "tsmiAjuExibirAjuda";
-            this.tsmiAjuExibirAjuda.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAjuExibirAjuda.Size = new System.Drawing.Size(158, 22);
             this.tsmiAjuExibirAjuda.Text = "Exibir Ajuda";
             this.tsmiAjuExibirAjuda.Click += new System.EventHandler(this.TsmiAjuExibirAjuda_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(155, 6);
             // 
             // tsmiAjuSobre
             // 
             this.tsmiAjuSobre.Name = "tsmiAjuSobre";
-            this.tsmiAjuSobre.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAjuSobre.Size = new System.Drawing.Size(158, 22);
             this.tsmiAjuSobre.Text = "Sobre o Sistema";
             this.tsmiAjuSobre.Click += new System.EventHandler(this.TsmiAjuSobre_Click);
             // 
@@ -216,7 +216,7 @@
             this.sstVersão.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.sstVersão.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslVersaoPrograma});
-            this.sstVersão.Location = new System.Drawing.Point(0, 540);
+            this.sstVersão.Location = new System.Drawing.Point(0, 539);
             this.sstVersão.Name = "sstVersão";
             this.sstVersão.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
             this.sstVersão.Size = new System.Drawing.Size(1008, 22);
@@ -233,7 +233,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1008, 562);
+            this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.sstVersão);
             this.Controls.Add(this.mstMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

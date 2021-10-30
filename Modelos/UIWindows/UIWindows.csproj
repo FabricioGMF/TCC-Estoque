@@ -50,6 +50,12 @@
     <Compile Include="Cadastros\ClientesForm.Designer.cs">
       <DependentUpon>ClientesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Outros\PesquisaProdutoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Outros\PesquisaProdutoForm.Designer.cs">
+      <DependentUpon>PesquisaProdutoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <EmbeddedResource Include="Cadastros\ClientesForm.resx">
       <DependentUpon>ClientesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Outros\PesquisaProdutoForm.resx">
+      <DependentUpon>PesquisaProdutoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

@@ -50,31 +50,28 @@ namespace Estoque
                 cn.ConnectionString = Dados.StringDeConexao;
                 SqlCommand cmd1 = new SqlCommand();
                 cmd1.Connection = cn;
-                cmd1.CommandText = "insert into Vendas (CodigoCliente, CodigoProduto, Data_Venda, Quantidade, Preco_Unitario, Faturado) VALUES (@CodigoCliente, @CodigoProduto, @Data, @Quantidade, @Preco_Unitario, @Faturado); select @@IDENTITY";
+                cmd1.CommandText = "insert into Vendas (Data_Venda, Faturado, CodigoCliente) VALUES (@Data_Venda, @Faturado, @CodigoCliente); select @@IDENTITY";
 
-                SqlCommand cmd2 = new SqlCommand();
-                cmd2.Connection = cn;
-                cmd2.CommandText= @"Update Produtos Set estoque_total = Estoque_Seguranca - Estoque - @Quantidade where Codigo = @CodigoProduto";
+                //SqlCommand cmd2 = new SqlCommand();
+                //cmd2.Connection = cn;
+                //cmd2.CommandText= @"Update Produtos Set estoque_total = Estoque_Seguranca - Estoque - @Quantidade where Codigo = @CodigoProduto";
 
                 cn.Open();
 
                 t = cn.BeginTransaction(IsolationLevel.Serializable);
 
                 cmd1.Transaction = t;
-                cmd2.Transaction = t;
+                //cmd2.Transaction = t;
 
                 cmd1.Parameters.AddWithValue("@CodigoCliente", venda.CodigoCliente);
-                cmd1.Parameters.AddWithValue("@CodigoProduto", venda.CodigoProduto);
                 cmd1.Parameters.AddWithValue("@Data_Venda", venda.DataVenda);
-                cmd1.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
                 cmd1.Parameters.AddWithValue("@Faturado", venda.Faturado);
-                cmd1.Parameters.AddWithValue("@Preco_Unitario", venda.PrecoUnitario);
 
-                cmd2.Parameters.AddWithValue("@CodigoProduto", venda.CodigoProduto);
-                cmd2.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
+                //cmd2.Parameters.AddWithValue("@CodigoProduto", venda.CodigoProduto);
+                //cmd2.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
 
-                venda.Codigo = Convert.ToInt32(cmd2.ExecuteScalar());
-                cmd2.ExecuteNonQuery();
+                //venda.Codigo = Convert.ToInt32(cmd2.ExecuteScalar());
+                //cmd2.ExecuteNonQuery();
 
                 t.Commit();
             }
