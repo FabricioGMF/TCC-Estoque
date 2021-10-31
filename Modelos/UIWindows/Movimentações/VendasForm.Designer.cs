@@ -298,6 +298,7 @@
             this.btnBuscarProduto.Size = new System.Drawing.Size(30, 23);
             this.btnBuscarProduto.TabIndex = 24;
             this.btnBuscarProduto.Text = "...";
+            this.tipItem.SetToolTip(this.btnBuscarProduto, "Abrir seleção de produto");
             this.btnBuscarProduto.UseVisualStyleBackColor = true;
             this.btnBuscarProduto.Click += new System.EventHandler(this.BtnBuscarProduto_Click);
             // 
