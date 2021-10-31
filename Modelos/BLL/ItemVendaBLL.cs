@@ -6,6 +6,7 @@ namespace BLL
 {
     public class ItemVendaBLL
     {
+        //Lista de Itens da Venda:
         public ArrayList ListaItens()
         {
             ItemVendaDAL obj = new ItemVendaDAL();
