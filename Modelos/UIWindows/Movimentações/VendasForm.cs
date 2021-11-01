@@ -35,11 +35,11 @@ namespace UIWindows
             {
                 if (dgvItem.CurrentRow != null)
                 {
-                    dgvProdutosBusca[0, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
-                    dgvProdutosBusca[1, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
-                    dgvProdutosBusca[2, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
-                    dgvProdutosBusca[3, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
-                    dgvProdutosBusca[4, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
+                    txtNumVenda.Text = dgvProdutosBusca[0, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
+                    txtCodigo.Text = dgvProdutosBusca[1, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
+                    numQtdItem.Value = (int)dgvProdutosBusca[2, dgvProdutosBusca.CurrentRow.Index].Value;
+                    txtPrecoUnitario.Text = dgvProdutosBusca[3, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
+                    txtTotalItem.Text = dgvProdutosBusca[4, dgvProdutosBusca.CurrentRow.Index].Value.ToString();
                 }
 
                 if (dgvItem.RowCount > 0)
@@ -83,7 +83,7 @@ namespace UIWindows
                 ItemVendaBLL obj = new ItemVendaBLL();
                 obj.Incluir(itemVenda);
                 MessageBox.Show("O item foi incluído com sucesso!");
-                txtCodigo.Text = Convert.ToString(itemVenda.CodigoVenda);
+                txtNumVenda.Text = Convert.ToString(itemVenda.CodigoVenda);
                 AtualizaGrid_Item();
             }
             catch (Exception ex)

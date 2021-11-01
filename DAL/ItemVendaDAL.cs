@@ -12,7 +12,7 @@ namespace Estoque.DAL
         public ArrayList ListaItens()
         {
             SqlConnection cn = new SqlConnection(Dados.StringDeConexao);
-            SqlCommand cmd = new SqlCommand("Select * from Produtos Where codigoVenda=@codigoVenda", cn);
+            SqlCommand cmd = new SqlCommand("Select * from Item_Venda", cn);
 
             cn.Open();
 
