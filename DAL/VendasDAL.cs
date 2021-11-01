@@ -70,7 +70,7 @@ namespace Estoque
                 //cmd2.Parameters.AddWithValue("@CodigoProduto", venda.CodigoProduto);
                 //cmd2.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
 
-                //venda.Codigo = Convert.ToInt32(cmd2.ExecuteScalar());
+                venda.CodigoVenda = Convert.ToInt32(cmd1.ExecuteScalar());
                 //cmd2.ExecuteNonQuery();
 
                 t.Commit();

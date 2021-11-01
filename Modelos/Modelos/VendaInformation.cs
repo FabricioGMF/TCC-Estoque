@@ -4,11 +4,11 @@ namespace Estoque
 {
     public class VendaInformation
     {
-        private int _codigo;
-        public int Codigo
+        private int _codigoVenda;
+        public int CodigoVenda
         {
-            get { return _codigo; }
-            set { _codigo = value; }
+            get { return _codigoVenda; }
+            set { _codigoVenda = value; }
         }     
 
         private DateTime _dataVenda;

@@ -54,18 +54,18 @@
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.dgvItem = new System.Windows.Forms.DataGridView();
             this.tipItem = new System.Windows.Forms.ToolTip(this.components);
             this.grpSelecionarProduto = new System.Windows.Forms.GroupBox();
             this.dgvProdutosBusca = new System.Windows.Forms.DataGridView();
             this.lblPesquisaProduto = new System.Windows.Forms.Label();
             this.txtPesquisarProduto = new System.Windows.Forms.TextBox();
+            this.dgvItem = new System.Windows.Forms.DataGridView();
             this.grpVenda.SuspendLayout();
             this.grpItens.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQtdItem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.grpSelecionarProduto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutosBusca)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCliente
@@ -319,15 +319,6 @@
             this.txtCodigo.Size = new System.Drawing.Size(60, 20);
             this.txtCodigo.TabIndex = 21;
             // 
-            // dgvItem
-            // 
-            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItem.Location = new System.Drawing.Point(6, 60);
-            this.dgvItem.Name = "dgvItem";
-            this.dgvItem.Size = new System.Drawing.Size(466, 259);
-            this.dgvItem.TabIndex = 23;
-            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvItem_CellClick);
-            // 
             // grpSelecionarProduto
             // 
             this.grpSelecionarProduto.Controls.Add(this.dgvProdutosBusca);
@@ -373,6 +364,15 @@
             this.txtPesquisarProduto.TabIndex = 33;
             this.txtPesquisarProduto.TextChanged += new System.EventHandler(this.TxtPesquisarProduto_TextChanged);
             // 
+            // dgvItem
+            // 
+            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItem.Location = new System.Drawing.Point(6, 60);
+            this.dgvItem.Name = "dgvItem";
+            this.dgvItem.Size = new System.Drawing.Size(466, 259);
+            this.dgvItem.TabIndex = 23;
+            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvItem_CellClick);
+            // 
             // VendasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,10 +392,10 @@
             this.grpItens.ResumeLayout(false);
             this.grpItens.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQtdItem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.grpSelecionarProduto.ResumeLayout(false);
             this.grpSelecionarProduto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutosBusca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,7 +419,6 @@
         private System.Windows.Forms.GroupBox grpItens;
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.DataGridView dgvItem;
         private System.Windows.Forms.Button btnBuscarProduto;
         private System.Windows.Forms.Button btnExcluirItem;
         private System.Windows.Forms.Button btnAdicionarItem;
@@ -433,5 +432,6 @@
         private System.Windows.Forms.DataGridView dgvProdutosBusca;
         private System.Windows.Forms.Label lblPesquisaProduto;
         private System.Windows.Forms.TextBox txtPesquisarProduto;
+        private System.Windows.Forms.DataGridView dgvItem;
     }
 }
