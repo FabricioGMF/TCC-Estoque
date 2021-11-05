@@ -123,7 +123,7 @@ namespace UIWindows
         {
             if (txtCodigo.Text.Length == 0)
             {
-                MessageBox.Show("Um cliente deve ser selecionado para alteração.");
+                MessageBox.Show("Um produto deve ser selecionado para alteração.");
             }
             else
             {

@@ -43,53 +43,72 @@ namespace Estoque.DAL
             try
             {
                 cn.ConnectionString = Dados.StringDeConexao;
-                //command
-                SqlCommand cmd = new SqlCommand
-                {
-                    Connection = cn,
-                    //nome da stored procedure
-                    CommandText = "insere_itemVenda",
-                    //parametros da stored procedure
-                    CommandType = CommandType.StoredProcedure
-                };
-                SqlParameter pcodigovenda = new SqlParameter("@codigoVenda", SqlDbType.Int)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(pcodigovenda);
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = "Inserir ItemVenda";
+                cmd.CommandType = CommandType.Text;
 
-                SqlParameter pcodigoproduto = new SqlParameter("@codigoProduto", SqlDbType.Int)
-                {
-                    Value = itemVenda.CodigoProduto
-                };
-                cmd.Parameters.Add(pcodigoproduto);
+                cmd.CommandText = "set identity_insert item_Vendas on;" + 
+                                  "insert into item_Vendas(codigoVenda, codigoProduto, qtd_item, valor_item, total_item) values (@codigoVenda, @codigoProduto, @qtditem, @valoritem, @totalitem);" + 
+                                  "set identity_insert item_Vendas off;";
 
-                SqlParameter pqtditem = new SqlParameter("@qtditem", SqlDbType.Int)
-                {
-                    Value = itemVenda.QtdItem
-                };
-                cmd.Parameters.Add(pqtditem);
-
-                SqlParameter pvaloritem = new SqlParameter("@valoritem", SqlDbType.Decimal)
-                {
-                    Precision = 10,
-                    Scale = 2,
-                    Value = itemVenda.ValorItem
-                };
-                cmd.Parameters.Add(pvaloritem);
-
-                SqlParameter ptotalitem = new SqlParameter("@totalitem", SqlDbType.Decimal)
-                {
-                    Precision = 10,
-                    Scale = 2,
-                    Value = itemVenda.TotalItem
-                };
-                cmd.Parameters.Add(ptotalitem);
+                cmd.Parameters.AddWithValue("@codigoVenda", itemVenda.CodigoVenda);
+                cmd.Parameters.AddWithValue("@codigoProduto", itemVenda.CodigoProduto);
+                cmd.Parameters.AddWithValue("@qtditem", itemVenda.QtdItem);
+                cmd.Parameters.AddWithValue("@valoritem", itemVenda.ValorItem);
+                cmd.Parameters.AddWithValue("@totalitem", itemVenda.TotalItem);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
 
-                itemVenda.CodigoVenda = (Int32)cmd.Parameters["@codigoVenda"].Value;
+                //cn.ConnectionString = Dados.StringDeConexao;
+                ////command
+                //SqlCommand cmd = new SqlCommand
+                //{
+                //    Connection = cn,
+                //    //nome da stored procedure
+                //    CommandText = "insere_itemVenda",
+                //    //parametros da stored procedure
+                //    CommandType = CommandType.StoredProcedure
+                //};
+                //SqlParameter pcodigovenda = new SqlParameter("@codigoVenda", SqlDbType.Int)
+                //{
+                //    Direction = ParameterDirection.Output
+                //};
+                //cmd.Parameters.Add(pcodigovenda);
+
+                //SqlParameter pcodigoproduto = new SqlParameter("@codigoProduto", SqlDbType.Int)
+                //{
+                //    Value = itemVenda.CodigoProduto
+                //};
+                //cmd.Parameters.Add(pcodigoproduto);
+
+                //SqlParameter pqtditem = new SqlParameter("@qtditem", SqlDbType.Int)
+                //{
+                //    Value = itemVenda.QtdItem
+                //};
+                //cmd.Parameters.Add(pqtditem);
+
+                //SqlParameter pvaloritem = new SqlParameter("@valoritem", SqlDbType.Decimal)
+                //{
+                //    Precision = 10,
+                //    Scale = 2,
+                //    Value = itemVenda.ValorItem
+                //};
+                //cmd.Parameters.Add(pvaloritem);
+
+                //SqlParameter ptotalitem = new SqlParameter("@totalitem", SqlDbType.Decimal)
+                //{
+                //    Precision = 10,
+                //    Scale = 2,
+                //    Value = itemVenda.TotalItem
+                //};
+                //cmd.Parameters.Add(ptotalitem);
+
+                //cn.Open();
+                //cmd.ExecuteNonQuery();
+
+                //itemVenda.CodigoVenda = (Int32)cmd.Parameters["@codigoVenda"].Value;
             }
             catch (SqlException ex)
             {

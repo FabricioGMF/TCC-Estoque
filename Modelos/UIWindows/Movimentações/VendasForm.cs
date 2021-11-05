@@ -8,10 +8,18 @@ namespace UIWindows
 {
     public partial class VendasForm : Form
     {
+        //private int _contador = 0;
+
         public VendasForm()
         {
             InitializeComponent();
         }
+
+        //private void Gerar_CodigoItemVenda()
+        //{
+        //    _contador++;
+        //    txtNumVenda.Text = _contador.ToString().PadLeft(5, '0');
+        //}
 
         private void VendasForm_Load(object sender, EventArgs e)
         {
@@ -78,11 +86,21 @@ namespace UIWindows
                 itemVenda.TotalItem = Convert.ToDecimal(txtTotalItem.Text);
 
                 VendaInformation venda = new VendaInformation();
+                venda.DataVenda = dtpDataVenda.Value;
+
                 txtTotalVenda.Text = (venda.Faturado + itemVenda.TotalItem).ToString();
+
+                venda.Faturado = Convert.ToDecimal(txtTotalVenda.Text);
+                venda.CodigoCliente = (int)cbxCliente.SelectedValue;
+                
+                VendasBLL objVenda = new VendasBLL();
+                objVenda.Incluir(venda);
 
                 ItemVendaBLL obj = new ItemVendaBLL();
                 obj.Incluir(itemVenda);
                 MessageBox.Show("O item foi incluído com sucesso!");
+                            
+                itemVenda.CodigoVenda = Convert.ToInt32(txtNumVenda.Text);
                 txtNumVenda.Text = Convert.ToString(itemVenda.CodigoVenda);
                 AtualizaGrid_Item();
             }

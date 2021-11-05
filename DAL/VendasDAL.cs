@@ -62,10 +62,10 @@ namespace Estoque
 
                 cmd1.Transaction = t;
                 //cmd2.Transaction = t;
-
-                cmd1.Parameters.AddWithValue("@CodigoCliente", venda.CodigoCliente);
+                                
                 cmd1.Parameters.AddWithValue("@Data_Venda", venda.DataVenda);
                 cmd1.Parameters.AddWithValue("@Faturado", venda.Faturado);
+                cmd1.Parameters.AddWithValue("@CodigoCliente", venda.CodigoCliente);
 
                 //cmd2.Parameters.AddWithValue("@CodigoProduto", venda.CodigoProduto);
                 //cmd2.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
