@@ -48,9 +48,8 @@ namespace Estoque.DAL
                 cmd.CommandText = "Inserir ItemVenda";
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "set identity_insert item_Vendas on;" + 
-                                  "insert into item_Vendas(codigoVenda, codigoProduto, qtd_item, valor_item, total_item) values (@codigoVenda, @codigoProduto, @qtditem, @valoritem, @totalitem);" + 
-                                  "set identity_insert item_Vendas off;";
+                cmd.CommandText = "select top 1 * from vendas order by codigoVenda desc;" +
+                                  "insert into item_Vendas(codigoVenda, codigoProduto, qtd_item, valor_item, total_item) values (@codigoVenda, @codigoProduto, @qtditem, @valoritem, @totalitem);";
 
                 cmd.Parameters.AddWithValue("@codigoVenda", itemVenda.CodigoVenda);
                 cmd.Parameters.AddWithValue("@codigoProduto", itemVenda.CodigoProduto);
