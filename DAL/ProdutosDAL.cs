@@ -11,7 +11,7 @@ namespace Estoque
         public ArrayList ProdutosEmFalta()
         {
             SqlConnection cn = new SqlConnection(Dados.StringDeConexao);
-            SqlCommand cmd = new SqlCommand("Select * from Produtos Where Estoque = Estoque_Minimo and Estoque_Seguranca = 0", cn);
+            SqlCommand cmd = new SqlCommand("Select * from Produtos Where estoque = estoque_minimo and estoque_seguranca = 0", cn);
 
             cn.Open();
 
@@ -23,8 +23,8 @@ namespace Estoque
                 ProdutoInformation produto = new ProdutoInformation();
                 produto.Codigo = Convert.ToInt32(dr["codigo"]);
                 produto.Descricao = dr["descricao"].ToString();
-                produto.ValorCompra = Convert.ToDecimal(dr["valor_compra"]);
-                produto.ValorVenda = Convert.ToDecimal(dr["valor_venda"]);
+                produto.ValorCompra = Convert.ToDecimal(dr["valorcompra"]);
+                produto.ValorVenda = Convert.ToDecimal(dr["valorvenda"]);
                 produto.Estoque = Convert.ToInt32(dr["estoque"]);
                 produto.EstoqueMinimo = Convert.ToInt32(dr["estoque_minimo"]);
                 produto.EstoqueMaximo = Convert.ToInt32(dr["estoque_maximo"]);
